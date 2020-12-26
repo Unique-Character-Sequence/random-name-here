@@ -23,7 +23,6 @@ const Profile__postList = () => {
         <br/>
         <textarea rows="1"></textarea>
         <br/>
-        <br/>
         <button>Add post</button>
         {postsElements}
     </div>
