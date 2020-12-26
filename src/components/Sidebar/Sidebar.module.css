@@ -1,0 +1,26 @@
+.Sidebar {
+    grid-area: s;
+    background-color: darkcyan;
+    padding: 28px;
+}
+
+.item {
+
+}
+
+item a:hover {
+    color: darkgreen;
+    text-decoration: none;
+}
+
+.item a {
+    font-size: 24px;
+    color: darkmagenta;
+    text-decoration: none;
+    "&:hover":
+    color: darkgreen;
+}
+
+.item a.active {
+    color: yellow;
+}

@@ -1,0 +1,14 @@
+.app-wrapper {
+  width: auto;
+  height: auto;
+  margin: auto;
+  display: grid;
+  grid-template: 30% 1fr / 1fr 9fr;
+  grid-template-areas:
+  "h h"
+  "s m";
+}
+
+.app-wrapper-content{
+  background-color: salmon;
+}
