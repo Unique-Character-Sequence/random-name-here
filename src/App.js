@@ -19,7 +19,8 @@ const App = (props) => {
                 <Sidebar/>
                 <div className='app-wrapper-content'>
                     <Route path="/profile" render={() => <Profile PostsMassive={props.PostsMassive}/>}/>
-                    <Route path="/chats" render={() => <Chats MessagesMassive = {props.MessagesMassive}/>}/>
+                    <Route path="/chats" render={() => <Chats MessagesMassive={props.MessagesMassive}
+                                                              MsgNameplatesMassive={props.MsgNameplatesMassive}/>}/>
                     <Route path="/feed" render={() => <Feed/>}/>
                     <Route path="/music" render={() => <Music/>}/>
                     <Route path="/settings" render={() => <Settings/>}/>

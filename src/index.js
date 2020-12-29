@@ -22,11 +22,20 @@ let PostsMassive = [
 ]
 
 
+let MsgNameplatesMassive = [
+    {id: 0, user_name: 'Georgo Biba', lastMessage: 'asd2133'},
+    {id: 1, user_name: 'Geo22rgo Biba', lastMessage: '2sad133'},
+    {id: 2, user_name: 'Geor11g333o Biba', lastMessage: '213asas3'},
+    {id: 3, user_name: 'Georg333o Biba', lastMessage: '2133ddsa'},
+    {id: 4, user_name: 'Georg1333o Biba', lastMessage: '22asdqqq133'}
+]
+
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App PostsMassive = {PostsMassive} MessagesMassive = {MessagesMassive} />
-  </React.StrictMode>,
-  document.getElementById('root')
+    <React.StrictMode>
+        <App PostsMassive={PostsMassive} MessagesMassive={MessagesMassive} MsgNameplatesMassive={MsgNameplatesMassive}/>
+    </React.StrictMode>,
+    document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function
