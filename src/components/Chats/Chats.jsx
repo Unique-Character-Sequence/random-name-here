@@ -8,7 +8,7 @@ const Chats = (props) => {
     return <div className={classes.general}>
         <Chats__searchForm/>
         <Chats__chatList/>
-        <Chats__messages/>
+        <Chats__messages MessagesMassive = {props.MessagesMassive}/>
     </div>
 }
 

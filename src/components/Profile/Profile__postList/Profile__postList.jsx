@@ -1,15 +1,12 @@
 import classes from './Profile__postList.module.css'
 import Profile__postList_post from "./Profile__postList_post/Profile__postList_post";
-import PostsMassive from "../../../index.js"
-
-
-let postsElements = PostsMassive.map(p => <Profile__postList_post id={p.id}
-                                                                  user_name={p.user_name}
-                                                                  post_сontent={p.post_content}
-                                                                  likesAmount={p.likesAmount}/>);
 
 
 const Profile__postList = (props) => {
+    let postsElements = props.PostsMassive.map(p => <Profile__postList_post id={p.id}
+                                                                            user_name={p.user_name}
+                                                                            post_сontent={p.post_content}
+                                                                            likesAmount={p.likesAmount}/>);
     return <div className={classes.general}>
         My Posts
         <br/>

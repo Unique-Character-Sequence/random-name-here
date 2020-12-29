@@ -4,11 +4,11 @@ import Profile__menu_topInfo from "./Profile__menu_topInfo/Profile__menu_topInfo
 import Profile__postList from "./Profile__postList/Profile__postList"
 
 
-const Profile = () => {
+const Profile = (props) => {
     return <div className={classes.general}>
         <Profile__menu_topInfo />
         <Profile__gallery />
-        <Profile__postList />
+        <Profile__postList PostsMassive = {props.PostsMassive} />
     </div>
 }
 

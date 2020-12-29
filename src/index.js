@@ -4,6 +4,14 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+let MessagesMassive = [
+    {id: 0, user_name: 'Georgo Biba', messageContent: 'asd2133'},
+    {id: 1, user_name: 'Geo22rgo Biba', messageContent: '2sad133'},
+    {id: 2, user_name: 'Geor11g333o Biba', messageContent: '213asas3'},
+    {id: 3, user_name: 'Georg333o Biba', messageContent: '2133ddsa'},
+    {id: 4, user_name: 'Georg1333o Biba', messageContent: '22asdqqq133'}
+]
+
 
 let PostsMassive = [
     {id: 0, user_name: 'Georgo Biba', post_content: 'asd2133', likesAmount: 1023},
@@ -14,10 +22,9 @@ let PostsMassive = [
 ]
 
 
-
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App PostsMassive = {PostsMassive} MessagesMassive = {MessagesMassive} />
   </React.StrictMode>,
   document.getElementById('root')
 );
@@ -26,5 +33,3 @@ ReactDOM.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
-
-export default {PostsMassive};
