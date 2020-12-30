@@ -1,0 +1,13 @@
+.item {
+    padding: 5px;
+}
+
+.item a {
+    font-size: 20px;
+    color: darkmagenta;
+    text-decoration: none;
+}
+
+.item a.active {
+    color: yellow;
+}

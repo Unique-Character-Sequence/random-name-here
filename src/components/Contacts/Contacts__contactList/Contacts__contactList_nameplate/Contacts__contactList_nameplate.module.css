@@ -1,16 +1,9 @@
+.general{
+    display: grid;
+    grid-template-columns: 1fr 9fr;
+}
+
 .item > * {
     padding: 10px;
 }
 
-.item img {
-    padding: 0px;
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
-    border: 3px solid blueviolet;
-    border-radius: 50%;
-}
-
-.item a.active {
-    color: greenyellow;
-}
