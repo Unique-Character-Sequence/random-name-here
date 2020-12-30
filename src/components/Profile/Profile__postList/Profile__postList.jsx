@@ -3,7 +3,7 @@ import Profile__postList_post from "./Profile__postList_post/Profile__postList_p
 
 
 const Profile__postList = (props) => {
-    let postsElements = props.PostsMassive.map(p => <Profile__postList_post id={p.id}
+    let postsElements = props.PostsArray.map(p => <Profile__postList_post id={p.id}
                                                                             user_name={p.user_name}
                                                                             post_сontent={p.post_content}
                                                                             likesAmount={p.likesAmount}/>);

@@ -7,8 +7,8 @@ import Chats__messages from "./Chats__messages/Chats__messages";
 const Chats = (props) => {
     return <div className={classes.general}>
         <Chats__searchForm/>
-        <Chats__chatList MsgNameplatesMassive={props.ChatComponentStates.MsgNameplatesMassive}/>
-        <Chats__messages MessagesMassive={props.ChatComponentStates.MessagesMassive}/>
+        <Chats__chatList MsgNameplatesArray={props.ChatComponentStates.MsgNameplatesArray}/>
+        <Chats__messages MessagesArray={props.ChatComponentStates.MessagesArray}/>
     </div>
 }
 

@@ -24,10 +24,14 @@ const App = (props) => {
                            render={() => <Profile ProfileComponentStates={props.appState.ProfileComponentStates}/>}/>
                     <Route path="/chats"
                            render={() => <Chats ChatComponentStates={props.appState.ChatsComponentStates}/>}/>
-                    <Route path="/feed" render={() => <Feed/>}/>
-                    <Route path="/contacts" render={() => <Contacts/>}/>
-                    <Route path="/music" render={() => <Music/>}/>
-                    <Route path="/settings" render={() => <Settings/>}/>
+                    <Route path="/feed"
+                           render={() => <Feed/>}/>
+                    <Route path="/contacts"
+                           render={() => <Contacts ContactsComponentStates={props.appState.ContactsComponentStates}/>}/>
+                    <Route path="/music"
+                           render={() => <Music/>}/>
+                    <Route path="/settings"
+                           render={() => <Settings/>}/>
                 </div>
             </div>
         </BrowserRouter>

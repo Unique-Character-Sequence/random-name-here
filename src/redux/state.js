@@ -1,13 +1,13 @@
 let state = {
     ChatsComponentStates: {
-        MessagesMassive: [
+        MessagesArray: [
             {id: 0, user_name: 'Georgo Biba', messageContent: 'asd2133'},
             {id: 1, user_name: 'Geo22rgo Biba', messageContent: '2sad133'},
             {id: 2, user_name: 'Geor11g333o Biba', messageContent: '213asas3'},
             {id: 3, user_name: 'Georg333o Biba', messageContent: '2133ddsa'},
             {id: 4, user_name: 'Georg1333o Biba', messageContent: '22asdqqq133'}
         ],
-        MsgNameplatesMassive: [
+        MsgNameplatesArray: [
             {id: 0, user_name: 'Georgo Biba', lastMessage: 'asd2133'},
             {id: 1, user_name: 'Geo22rgo Biba', lastMessage: '2sad133'},
             {id: 2, user_name: 'Geor11g333o Biba', lastMessage: '213asas3'},
@@ -15,8 +15,39 @@ let state = {
             {id: 4, user_name: 'Georg1333o Biba', lastMessage: '22asdqqq133'}
         ]
     },
+
+    ContactsComponentStates: {
+        AddedUsersArray: [
+            {
+                id: 0,
+                user_name: 'Georgo Biba',
+                user_img: 'https://i.pinimg.com/originals/12/fe/52/12fe5285187f896e3ed6feaba04894be.jpg'
+            },
+            {
+                id: 1,
+                user_name: 'Geo22rgo Biba',
+                user_img: 'https://modnica.info/wp-content/uploads/2016/02/0902-52.jpg'
+            },
+            {
+                id: 2,
+                user_name: 'Geor11g333o Biba',
+                user_img: 'https://ptel.cz/wp-content/uploads/2019/12/123.png'
+            },
+            {
+                id: 3,
+                user_name: 'Georg333o Biba',
+                user_img: 'https://img.pravda.com/images/doc/0/3/03b8519-755671822123025.jpeg.jpg'
+            },
+            {
+                id: 4,
+                user_name: 'Georg1333o Biba',
+                user_img: 'https://s0.rbk.ru/v6_top_pics/media/img/7/32/755879164960327.jpg'
+            }
+        ],
+    },
+
     ProfileComponentStates: {
-        PostsMassive: [
+        PostsArray: [
             {id: 0, user_name: 'Georgo Biba', post_content: 'asd2133', likesAmount: 1023},
             {id: 1, user_name: 'Geo22rgo Biba', post_content: '2sad133', likesAmount: 3911},
             {id: 2, user_name: 'Geor11g333o Biba', post_content: '213asas3', likesAmount: 4911},
