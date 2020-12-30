@@ -18,9 +18,10 @@ const App = (props) => {
                 <Header/>
                 <Sidebar/>
                 <div className='app-wrapper-content'>
-                    <Route path="/profile" render={() => <Profile PostsMassive={props.PostsMassive}/>}/>
-                    <Route path="/chats" render={() => <Chats MessagesMassive={props.MessagesMassive}
-                                                              MsgNameplatesMassive={props.MsgNameplatesMassive}/>}/>
+                    <Route path="/profile"
+                           render={() => <Profile ProfileComponentStates={props.appState.ProfileComponentStates}/>}/>
+                    <Route path="/chats"
+                           render={() => <Chats ChatComponentStates={props.appState.ChatsComponentStates}/>}/>
                     <Route path="/feed" render={() => <Feed/>}/>
                     <Route path="/music" render={() => <Music/>}/>
                     <Route path="/settings" render={() => <Settings/>}/>

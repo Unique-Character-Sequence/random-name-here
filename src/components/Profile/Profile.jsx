@@ -8,7 +8,7 @@ const Profile = (props) => {
     return <div className={classes.general}>
         <Profile__menu_topInfo/>
         <Profile__gallery/>
-        <Profile__postList PostsMassive={props.PostsMassive}/>
+        <Profile__postList PostsMassive={props.ProfileComponentStates.PostsMassive}/>
     </div>
 }
 
