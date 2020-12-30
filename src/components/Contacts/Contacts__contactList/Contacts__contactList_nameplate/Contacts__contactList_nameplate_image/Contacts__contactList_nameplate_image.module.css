@@ -1,0 +1,8 @@
+.item img {
+    padding: 0px;
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border: 3px solid blueviolet;
+    border-radius: 50%;
+}
