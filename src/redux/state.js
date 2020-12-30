@@ -57,5 +57,15 @@ let state = {
     }
 }
 
+export let addPost = (post_content) => { // post_content - это параметр, название условное
+    let newPost = {
+        id: 5, // тут задуман счётчик
+        user_name: 'Name_here Surname_here', // тут отслеживание id юзера
+        post_content: post_content,
+        likesAmount: 0 //тут задуман счётчик кликов
+    }
+
+    state.ProfileComponentStates.PostsArray.push(newPost);
+}
 
 export default state;

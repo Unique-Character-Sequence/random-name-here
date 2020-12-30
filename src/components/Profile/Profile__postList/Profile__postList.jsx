@@ -1,17 +1,17 @@
 import classes from './Profile__postList.module.css'
-import Profile__postList_post from "./Profile__postList_post/Profile__postList_post";
-import {createRef} from "react";
+import Profile__postList_post from "./Profile__postList_post/Profile__postList_post"
+import {createRef} from "react"
 
 
 const Profile__postList = (props) => {
     let postsElements = props.PostsArray.map(p => <Profile__postList_post id={p.id}
                                                                           user_name={p.user_name}
                                                                           post_content={p.post_content}
-                                                                          likesAmount={p.likesAmount}/>);
-    let newPostRef = createRef();
+                                                                          likesAmount={p.likesAmount}/>)
+    let newPostRef = createRef()
     let addPost = () => {
-        let text = newPostRef.current.value;
-        alert(text);
+        let text = newPostRef.current.value
+        props.addPost(text)
     }
     return <div className={classes.general}>
         My Posts
@@ -26,4 +26,4 @@ const Profile__postList = (props) => {
     </div>
 }
 
-export default Profile__postList;
+export default Profile__postList

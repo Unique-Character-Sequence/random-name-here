@@ -8,7 +8,7 @@ const Profile = (props) => {
     return <div className={classes.general}>
         <Profile__menu_topInfo/>
         <Profile__gallery/>
-        <Profile__postList PostsArray={props.ProfileComponentStates.PostsArray}/>
+        <Profile__postList PostsArray={props.ProfileComponentStates.PostsArray} addPost={props.addPost}/>
     </div>
 }
 
