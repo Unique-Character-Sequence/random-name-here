@@ -11,6 +11,7 @@ const Contacts__contactList = (props) => {
         <br/>
         Contacts:
         <br/>
+        <br/>
         {contactsElements}
     </div>
 }

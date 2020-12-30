@@ -8,7 +8,7 @@ import Contacts__contactList_nameplate_text
 const Contacts__contactList_nameplate = (props) => {
     return <div className={classes.general}>
         <Contacts__contactList_nameplate_image user_img={props.user_img}/>
-        <Contacts__contactList_nameplate_text user_name={props.user_name} id={props.id} />
+        <Contacts__contactList_nameplate_text user_name={props.user_name} id={props.id}/>
     </div>
 }
 

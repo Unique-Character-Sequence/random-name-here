@@ -1,9 +1,10 @@
-.general{
+.general {
     display: grid;
-    grid-template-columns: 1fr 9fr;
+    grid-template-columns: auto 9fr;
+    grid-template-rows: repeat(10, auto);
+    grid-row-gap: 1px;
 }
 
 .item > * {
     padding: 10px;
 }
-

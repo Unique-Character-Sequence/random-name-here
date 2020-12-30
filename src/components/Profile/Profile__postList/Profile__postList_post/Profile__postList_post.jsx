@@ -7,7 +7,7 @@ const Profile__postList_post = (props) => {
     return <div className={classes.general}>
         <div className={classes.item}>
             {props.id}
-            {props.user_name}
+            {props.user_name}:
         </div>
         <br/>
         <div className={classes.item}>
