@@ -6,7 +6,7 @@ import Profile__postList_post_likeCounter
 const Profile__postList_post = (props) => {
     return <div className={classes.general}>
         <div className={classes.item}>
-            {props.id}
+            {props.id + ": "}
             {props.user_name}:
         </div>
         <br/>

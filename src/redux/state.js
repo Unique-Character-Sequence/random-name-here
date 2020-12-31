@@ -1,3 +1,5 @@
+import {rerender} from "../render"
+
 let state = {
     ChatsComponentStates: {
         MessagesArray: [
@@ -54,7 +56,13 @@ let state = {
             {id: 3, user_name: 'Georg333o Biba', post_content: '213123123', likesAmount: 5911},
             {id: 4, user_name: 'Georg1333o Biba', post_content: '123123', likesAmount: 123911}
         ],
+        TextAreaData: ''
     }
+}
+
+export let areaUpdate = (updatedText) => {
+    state.ProfileComponentStates.TextAreaData = updatedText
+    rerender(state)
 }
 
 export let addPost = (post_content) => { // post_content - это параметр, название условное
@@ -65,7 +73,9 @@ export let addPost = (post_content) => { // post_content - это парамет
         likesAmount: 0 //тут задуман счётчик кликов
     }
 
-    state.ProfileComponentStates.PostsArray.push(newPost);
+    state.ProfileComponentStates.PostsArray.push(newPost)
+    state.ProfileComponentStates.TextAreaData = ""
+    rerender(state)
 }
 
-export default state;
+export default state
