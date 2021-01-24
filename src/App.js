@@ -24,7 +24,8 @@ const App = (props) => {
                            render={() => <Profile ProfileComponentStates={props.appState.ProfileComponentStates}
                                                   dispatch={props.dispatch}/>}/>
                     <Route path="/chats"
-                           render={() => <Chats ChatComponentStates={props.appState.ChatsComponentStates}/>}/>
+                           render={() => <Chats ChatComponentStates={props.appState.ChatsComponentStates}
+                                                dispatch={props.dispatch}/>}/>
                     <Route path="/feed"
                            render={() => <Feed/>}/>
                     <Route path="/contacts"

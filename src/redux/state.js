@@ -1,3 +1,8 @@
+const UPDATE_ADD_POST_AREA = 'UPDATE_ADD_POST_AREA'
+const ADD_POST = 'ADD_POST'
+const SEND_MSG = 'SEND_MSG'
+const UPDATE_MSG_INPUT_AREA = 'UPDATE_MSG_INPUT_AREA'
+
 let store = {
     _state: {
         ChatsComponentStates: {
@@ -14,9 +19,16 @@ let store = {
                 {id: 2, user_name: 'Geor11g333o Biba', lastMessage: '213asas3'},
                 {id: 3, user_name: 'Georg333o Biba', lastMessage: '2133ddsa'},
                 {id: 4, user_name: 'Georg1333o Biba', lastMessage: '22asdqqq133'}
-            ]
+            ],
+            User1_User2_Chat: [
+                {id: 0, user_name: 'User1', msg_content: 'Hello'},
+                {id: 1, user_name: 'User1', msg_content: 'Hello?'},
+                {id: 2, user_name: 'User2', msg_content: 'Hello'},
+                {id: 3, user_name: 'User1', msg_content: 'Im gonna watch a movie. Wanna join?'},
+                {id: 4, user_name: 'User1', msg_content: 'Yep, ill come asap'}
+            ],
+            MsgAreaData: ''
         },
-
         ContactsComponentStates: {
             AddedUsersArray: [
                 {
@@ -55,7 +67,7 @@ let store = {
                 {id: 3, user_name: 'Georg333o Biba', post_content: '213123123', likesAmount: 5911},
                 {id: 4, user_name: 'Georg1333o Biba', post_content: '123123', likesAmount: 123911}
             ],
-            TextAreaData: ''
+            PostAreaData: ''
         }
     },
     _callSubscriber() {
@@ -68,7 +80,7 @@ let store = {
         this._callSubscriber = observer // замена кода внутри функции
     },
     dispatch(p) {
-        if (p.type === 'ADD-POST') { // post_content - это параметр, название условное
+        if (p.type === ADD_POST) { // post_content - это параметр, название условное
             let newPost = {
                 id: 5, // тут задуман счётчик
                 user_name: 'Name_here Surname_here', // тут отслеживание id юзера
@@ -76,15 +88,54 @@ let store = {
                 likesAmount: 0 //тут задуман счётчик кликов
             }
             this._state.ProfileComponentStates.PostsArray.push(newPost)
-            this._state.ProfileComponentStates.TextAreaData = ""
+            this._state.ProfileComponentStates.PostAreaData = ""
             this._callSubscriber(this._state)
-        }
-        else if (p.type === 'AREA-UPDATE') {
-            this._state.ProfileComponentStates.TextAreaData = p.updatedText
+        } else if (p.type === UPDATE_ADD_POST_AREA) {
+            this._state.ProfileComponentStates.PostAreaData = p.addPostAreaUpdatedText
+            this._callSubscriber(this._state) // перерисовка DOM-дерева
+        } else if (p.type === SEND_MSG) {
+            let newMsg = {
+                id: 999, // тут задуман счётчик
+                user_name: 'User1', // тут отслеживание id юзера
+                msg_content: p.msg_content
+            }
+            this._state.ChatsComponentStates.User1_User2_Chat.push(newMsg)
+            this._state.ChatsComponentStates.MsgAreaData = ""
+            this._callSubscriber(this._state)
+        } else if (p.type === UPDATE_MSG_INPUT_AREA) {
+            this._state.ChatsComponentStates.MsgAreaData = p.msgInputUpdatedText
             this._callSubscriber(this._state) // перерисовка DOM-дерева
         }
+
     }
 }
 
+export const addPost_actionCreator = (text) => {
+    return {
+        type: ADD_POST,
+        post_content: text
+    }
+}
+
+export const updateAddPostArea_actionCreator = (text) => {
+    return {
+        type: UPDATE_ADD_POST_AREA,
+        addPostAreaUpdatedText: text
+    }
+}
+
+export const sendMsg_actionCreator = (text) => {
+    return {
+        type: SEND_MSG,
+        msg_content: text
+    }
+}
+
+export const updateMsgInputArea_actionCreator = (text) => {
+    return {
+        type: UPDATE_MSG_INPUT_AREA,
+        msgInputUpdatedText: text
+    }
+}
 export default store
 //window.store = store

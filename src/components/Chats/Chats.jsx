@@ -8,7 +8,9 @@ const Chats = (props) => {
     return <div className={classes.general}>
         <Chats__searchForm/>
         <Chats__chatList MsgNameplatesArray={props.ChatComponentStates.MsgNameplatesArray}/>
-        <Chats__messages MessagesArray={props.ChatComponentStates.MessagesArray}/>
+        <Chats__messages MessagesArray={props.ChatComponentStates.User1_User2_Chat}
+                         MsgAreaData={props.ChatComponentStates.MsgAreaData}
+                         dispatch={props.dispatch}/>
     </div>
 }
 
