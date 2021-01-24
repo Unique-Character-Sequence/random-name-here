@@ -9,8 +9,7 @@ const Profile = (props) => {
         <Profile__menu_topInfo/>
         <Profile__gallery/>
         <Profile__postList PostsArray={props.ProfileComponentStates.PostsArray}
-                           addPost={props.addPost}
-                           areaUpdate={props.areaUpdate}
+                           dispatch={props.dispatch}
                            TextAreaData={props.ProfileComponentStates.TextAreaData}/>
     </div>
 }

@@ -58,31 +58,32 @@ let store = {
             TextAreaData: ''
         }
     },
+    _callSubscriber() {
+        console.log('state changed')
+    },
     getState() {
         return this._state
     },
-    callSubscriber() {
-        console.log('state changed')
-    },
-    areaUpdate(updatedText) {
-        this._state.ProfileComponentStates.TextAreaData = updatedText
-        this.callSubscriber(this._state)
-    },
-    addPost(post_content) { // post_content - это параметр, название условное
-        let newPost = {
-            id: 5, // тут задуман счётчик
-            user_name: 'Name_here Surname_here', // тут отслеживание id юзера
-            post_content: post_content,
-            likesAmount: 0 //тут задуман счётчик кликов
-        }
-        this._state.ProfileComponentStates.PostsArray.push(newPost)
-        this._state.ProfileComponentStates.TextAreaData = ""
-        this.callSubscriber(this._state)
-    },
     subscribe(observer) {
-        this.callSubscriber = observer // замена кода внутри функции
+        this._callSubscriber = observer // замена кода внутри функции
+    },
+    dispatch(p) {
+        if (p.type === 'ADD-POST') { // post_content - это параметр, название условное
+            let newPost = {
+                id: 5, // тут задуман счётчик
+                user_name: 'Name_here Surname_here', // тут отслеживание id юзера
+                post_content: p.post_content,
+                likesAmount: 0 //тут задуман счётчик кликов
+            }
+            this._state.ProfileComponentStates.PostsArray.push(newPost)
+            this._state.ProfileComponentStates.TextAreaData = ""
+            this._callSubscriber(this._state)
+        }
+        else if (p.type === 'AREA-UPDATE') {
+            this._state.ProfileComponentStates.TextAreaData = p.updatedText
+            this._callSubscriber(this._state) // перерисовка DOM-дерева
+        }
     }
-
 }
 
 export default store

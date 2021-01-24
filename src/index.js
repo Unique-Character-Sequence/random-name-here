@@ -11,8 +11,7 @@ let rerender = (state) => {
         <React.StrictMode>
             <App
                 appState={state}
-                addPost={store.addPost.bind(store)}
-                areaUpdate={store.areaUpdate.bind(store)}
+                dispatch={store.dispatch.bind(store)}
             />
         </React.StrictMode>,
         document.getElementById('root')

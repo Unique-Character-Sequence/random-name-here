@@ -11,15 +11,18 @@ const Profile__postList = (props) => {
     let newPostRef = createRef()
     let addPost = () => {
         let text = props.TextAreaData
-        props.addPost(text)
+        props.dispatch({type: 'ADD-POST', post_content: text})
     }
-    let updateTextAreaData = () => props.areaUpdate(newPostRef.current.value)
+    //(2) в state.js уходит обновлённая информация о тексте внутри строки. (3) вносится изменение в БД затем перерисовывается страница
+    let updateTextAreaData = () => props.dispatch({type: 'AREA-UPDATE', updatedText: newPostRef.current.value})
 
     return <div className={classes.general}>
         My Posts
         <br/>
         <br/>
-        <textarea onChange={updateTextAreaData} value={props.TextAreaData} rows="1"
+        <textarea onChange={updateTextAreaData}// (1) мы нажимаем что-то и вызывается updateTextAreaData
+                  value={props.TextAreaData} // (0) и (4) отрисовывается страница с нынешними данными в textarea
+                  rows="1"
                   ref={newPostRef}/>
         <br/>
         <button onClick={addPost}>Add post</button>
