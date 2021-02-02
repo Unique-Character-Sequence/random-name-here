@@ -26,6 +26,7 @@ const Chats__messages = (props) => {
     return <div className={classes.items}>
         {messagesElements}
         <textarea onChange={updateTextAreaData}
+                  placeholder={'Enter message'}
                   rows="1"
                   ref={newMsgRef}
                   value={props.MsgAreaData}/>
