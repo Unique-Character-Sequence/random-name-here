@@ -1,7 +1,7 @@
 import classes from './Profile__postList.module.css'
 import Profile__postList_post from "./Profile__postList_post/Profile__postList_post"
 import {createRef} from "react"
-import {addPost_actionCreator, updateAddPostArea_actionCreator} from "../../../redux/state";
+import {addPost_actionCreator, updateAddPostArea_actionCreator} from "../../../redux/ProfileReducer"
 
 
 const Profile__postList = (props) => {

@@ -1,7 +1,7 @@
 import classes from './Chats__messages.module.css'
 import Chats__messages_message from "./Chats_messages_message/Chats__messages_message";
 import {createRef} from "react";
-import {sendMsg_actionCreator, updateMsgInputArea_actionCreator} from "../../../redux/state";
+import {sendMsg_actionCreator, updateMsgInputArea_actionCreator} from "../../../redux/ChatsReducer";
 
 
 const Chats__messages = (props) => {

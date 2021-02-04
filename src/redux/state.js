@@ -1,7 +1,7 @@
-const UPDATE_ADD_POST_AREA = 'UPDATE_ADD_POST_AREA'
-const ADD_POST = 'ADD_POST'
-const SEND_MSG = 'SEND_MSG'
-const UPDATE_MSG_INPUT_AREA = 'UPDATE_MSG_INPUT_AREA'
+import ProfileReducer from "./ProfileReducer";
+import ChatsReducer from "./ChatsReducer";
+import ContactsReducer from "./ContactsReducer";
+
 
 let store = {
     _state: {
@@ -79,63 +79,14 @@ let store = {
     subscribe(observer) {
         this._callSubscriber = observer // замена кода внутри функции
     },
-    dispatch(p) {
-        if (p.type === ADD_POST) { // post_content - это параметр, название условное
-            let newPost = {
-                id: 5, // тут задуман счётчик
-                user_name: 'Name_here Surname_here', // тут отслеживание id юзера
-                post_content: p.post_content,
-                likesAmount: 0 //тут задуман счётчик кликов
-            }
-            this._state.ProfileComponentStates.PostsArray.push(newPost)
-            this._state.ProfileComponentStates.PostAreaData = ""
-            this._callSubscriber(this._state)
-        } else if (p.type === UPDATE_ADD_POST_AREA) {
-            this._state.ProfileComponentStates.PostAreaData = p.addPostAreaUpdatedText
-            this._callSubscriber(this._state) // перерисовка DOM-дерева
-        } else if (p.type === SEND_MSG) {
-            let newMsg = {
-                id: 999, // тут задуман счётчик
-                user_name: 'User1', // тут отслеживание id юзера
-                msg_content: p.msg_content
-            }
-            this._state.ChatsComponentStates.User1_User2_Chat.push(newMsg)
-            this._state.ChatsComponentStates.MsgAreaData = ""
-            this._callSubscriber(this._state)
-        } else if (p.type === UPDATE_MSG_INPUT_AREA) {
-            this._state.ChatsComponentStates.MsgAreaData = p.msgInputUpdatedText
-            this._callSubscriber(this._state) // перерисовка DOM-дерева
-        }
+    dispatch(action) {
+        this._state.ProfileComponentStates = ProfileReducer(this._state.ProfileComponentStates, action)
+        this._state.ChatsComponentStates = ChatsReducer(this._state.ChatsComponentStates, action)
+        this._state.ContactsComponentStates = ContactsReducer(this._state.ContactsComponentStates, action)
 
+        this._callSubscriber(this._state)
     }
 }
 
-export const addPost_actionCreator = (text) => {
-    return {
-        type: ADD_POST,
-        post_content: text
-    }
-}
-
-export const updateAddPostArea_actionCreator = (text) => {
-    return {
-        type: UPDATE_ADD_POST_AREA,
-        addPostAreaUpdatedText: text
-    }
-}
-
-export const sendMsg_actionCreator = (text) => {
-    return {
-        type: SEND_MSG,
-        msg_content: text
-    }
-}
-
-export const updateMsgInputArea_actionCreator = (text) => {
-    return {
-        type: UPDATE_MSG_INPUT_AREA,
-        msgInputUpdatedText: text
-    }
-}
 export default store
 //window.store = store
