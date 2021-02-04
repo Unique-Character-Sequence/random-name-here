@@ -1,12 +1,13 @@
 const SEND_MSG = 'SEND_MSG'
 const UPDATE_MSG_INPUT_AREA = 'UPDATE_MSG_INPUT_AREA'
 
+
 const ChatsReducer = (state, action) => {
     switch (action.type) {
         case SEND_MSG:
             let newMsg = {
                 id: 999, // тут задуман счётчик
-                user_name: 'User1', // тут отслеживание id юзера
+                user_name: 'User1', // тут отслеживание id юзера должно быть
                 msg_content: action.msg_content
             }
             state.User1_User2_Chat.push(newMsg)
