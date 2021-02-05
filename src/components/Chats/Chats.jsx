@@ -12,6 +12,7 @@ const Chats = (props) => {
                          MsgAreaData={props.ChatComponentStates.MsgAreaData}
                          dispatch={props.dispatch}/>
     </div>
+
 }
 
 

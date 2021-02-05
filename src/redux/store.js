@@ -5,7 +5,7 @@ import ContactsReducer from "./ContactsReducer";
 
 let store = {
     _state: {
-        ChatsComponentStates: {
+        ChatComponentStates: {
             MessagesArray: [
                 {id: 0, user_name: 'Georgo Biba', messageContent: 'asd2133'},
                 {id: 1, user_name: 'Geo22rgo Biba', messageContent: '2sad133'},
@@ -58,7 +58,6 @@ let store = {
                 }
             ],
         },
-
         ProfileComponentStates: {
             PostsArray: [
                 {id: 0, user_name: 'Georgo Biba', post_content: '123123', likesAmount: 1023},

@@ -3,7 +3,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
 import App from './App'
-import store from './redux/state.js'
+import store from './redux/redux-store.js'
 
 
 let rerender = (state) => {
@@ -20,6 +20,11 @@ let rerender = (state) => {
 
 rerender(store.getState())
 
-store.subscribe(rerender)
+//store.subscribe(rerender)
+
+store.subscribe(() => {
+    let state = store.getState()
+    rerender(state)
+})
 
 reportWebVitals()

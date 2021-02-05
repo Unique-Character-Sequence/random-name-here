@@ -19,7 +19,7 @@ const Profile__postList = (props) => {
         props.dispatch(action)
     }
 
-    //(2) в state.js уходит обновлённая информация о тексте внутри строки. (3) вносится изменение в БД затем перерисовывается страница
+    //(2) в store.js уходит обновлённая информация о тексте внутри строки. (3) вносится изменение в БД затем перерисовывается страница
     let updateAddPostArea = () => {
         let action = updateAddPostArea_actionCreator(newPostRef.current.value)
         props.dispatch(action)
