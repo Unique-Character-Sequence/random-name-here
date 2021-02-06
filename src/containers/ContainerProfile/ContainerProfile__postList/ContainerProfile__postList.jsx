@@ -1,7 +1,5 @@
 import Profile__postList from "../../../components/Profile/Profile__postList/Profile__postList";
 import {addPost_actionCreator, updateAddPostArea_actionCreator} from "../../../.store/reducers/ProfileReducer";
-import store from "../../../.store/store";
-
 
 const ContainerProfile__postList = (props) => {
     let addPost = () => {
