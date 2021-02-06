@@ -1,6 +1,6 @@
-import ProfileReducer from "./ProfileReducer";
-import ChatsReducer from "./ChatsReducer";
-import ContactsReducer from "./ContactsReducer";
+import ProfileReducer from "../.store/reducers/ProfileReducer";
+import ChatsReducer from "../.store/reducers/ChatsReducer";
+import ContactsReducer from "../.store/reducers/ContactsReducer";
 
 
 let store = {

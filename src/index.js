@@ -3,7 +3,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
 import App from './containers/App'
-import store from './redux/redux-store.js'
+import store from "./.store/store";
 
 
 let rerender = (state) => {

@@ -1,20 +1,25 @@
 import Profile__postList from "../../../components/Profile/Profile__postList/Profile__postList";
-import {addPost_actionCreator, updateAddPostArea_actionCreator} from "../../../redux/ProfileReducer";
+import {addPost_actionCreator, updateAddPostArea_actionCreator} from "../../../.store/reducers/ProfileReducer";
+import store from "../../../.store/store";
 
 
 const ContainerProfile__postList = (props) => {
     let addPost = () => {
-        let text = props.PostAreaData
+        let text = props.store.ProfileComponentStates.PostAreaData
         let action = addPost_actionCreator(text)
-        props.dispatch(action)
+        props.store.dispatch(action)
     }
 
     let updateAddPostArea = (text) => {
         let action = updateAddPostArea_actionCreator(text)
-        props.dispatch(action)
+        props.store.dispatch(action)
     }
 
-    return <Profile__postList updateAddPostArea={updateAddPostArea} addPost={addPost} posts = {props.posts}/>
+    return <Profile__postList updateAddPostArea={updateAddPostArea}
+                              addPost={addPost}
+                              PostsArray={props.store.ProfileComponentStates.PostsArray}
+                              PostAreaData={props.store.ProfileComponentStates.PostAreaData}
+    />
 }
 
 export default ContainerProfile__postList

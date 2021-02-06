@@ -1,7 +1,7 @@
 import {combineReducers, createStore} from "redux";
-import ContactsReducer from "./ContactsReducer";
-import ChatsReducer from "./ChatsReducer";
-import ProfileReducer from "./ProfileReducer";
+import ContactsReducer from "./reducers/ContactsReducer";
+import ChatsReducer from "./reducers/ChatsReducer";
+import ProfileReducer from "./reducers/ProfileReducer";
 
 let reducers = combineReducers({
     ProfileComponentStates: ProfileReducer, // Прописываем состояние стейта, которое равно значению возвращенному ProfileReducer
