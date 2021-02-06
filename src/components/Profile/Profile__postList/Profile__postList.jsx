@@ -1,7 +1,6 @@
 import classes from './Profile__postList.module.css'
 import Profile__postList_post from "./Profile__postList_post/Profile__postList_post"
 import {createRef} from "react"
-import {addPost_actionCreator, updateAddPostArea_actionCreator} from "../../../redux/ProfileReducer"
 
 
 const Profile__postList = (props) => {
@@ -13,28 +12,21 @@ const Profile__postList = (props) => {
 
     let newPostRef = createRef()
 
-    let addPost = () => {
-        let text = props.PostAreaData
-        let action = addPost_actionCreator(text)
-        props.dispatch(action)
-    }
-
-    //(2) в store.js уходит обновлённая информация о тексте внутри строки. (3) вносится изменение в БД затем перерисовывается страница
-    let updateAddPostArea = () => {
-        let action = updateAddPostArea_actionCreator(newPostRef.current.value)
-        props.dispatch(action)
-    }
-
     return <div className={classes.general}>
         My Posts
         <br/>
         <br/>
-        <textarea onChange={updateAddPostArea}// (1) мы нажимаем что-то и вызывается updateTextAreaData
-                  value={props.PostAreaData} // (0) и (4) отрисовывается страница с нынешними данными в textarea
-                  rows="1"
-                  ref={newPostRef}/>
+        <textarea
+            onChange={() => props.updateAddPostArea(newPostRef.current.value)} // Если не прописать () => ..., то это не callback, а вызов сразу при отрисовке
+            // (1) мы нажимаем что-то и вызывается метод контейнера ContainerProfile__postList updateAddPostArea
+            // (2) в store.js уходит обновлённая информация о тексте внутри строки.
+            // (3) вносится изменение в БД затем перерисовывается страница
+            value={props.PostAreaData} // (0) и (4) отрисовывается страница с нынешними данными в textarea
+            rows="1"
+            ref={newPostRef}/>
         <br/>
-        <button onClick={addPost}>Add post</button>
+        <button onClick={() => props.addPost}>Add post</button>
+        {/*addPost импортируем из контейнера. Там же и делаем addPost(props.PostAreaData)*/}
         <br/>
         <br/>
         {postsElements}
