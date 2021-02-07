@@ -7,9 +7,9 @@ const ContainerProfile__postList = (props) => {
         let action = addPost_actionCreator(text)
         props.store.dispatch(action)
     }
-
     let updateAddPostArea = (text) => {
         let action = updateAddPostArea_actionCreator(text)
+
         props.store.dispatch(action)
     }
 
