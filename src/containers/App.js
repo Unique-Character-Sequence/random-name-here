@@ -19,14 +19,14 @@ const App = (props) => {
                 <Header/>
                 <Sidebar/>
                 <div className='app-wrapper-content'>
-                    <Route path="/profile" render={() => <Profile store={props.appState}/>}/>
+                    <Route path="/profile"
+                           render={() => <Profile/>}/>
                     <Route path="/chats"
-                           render={() => <Chats ChatComponentStates={props.appState.ChatComponentStates}
-                                                dispatch={props.dispatch}/>}/>
+                           render={() => <Chats/>}/>
                     <Route path="/feed"
                            render={() => <Feed/>}/>
                     <Route path="/contacts"
-                           render={() => <Contacts ContactsComponentStates={props.appState.ContactsComponentStates}/>}/>
+                           render={() => <Contacts/>}/>
                     <Route path="/music"
                            render={() => <Music/>}/>
                     <Route path="/settings"

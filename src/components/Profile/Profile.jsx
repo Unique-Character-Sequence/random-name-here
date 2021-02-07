@@ -5,11 +5,11 @@ import ContainerProfile__postList
     from "../../containers/ContainerProfile/ContainerProfile__postList/ContainerProfile__postList";
 
 
-const Profile = (props) => {
+const Profile = () => {
     return <div className={classes.general}>
         <Profile__menu_topInfo/>
         <Profile__gallery/>
-        <ContainerProfile__postList store={props.store}/>
+        <ContainerProfile__postList/>
     </div>
 }
 

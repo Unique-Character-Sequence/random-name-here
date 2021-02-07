@@ -4,15 +4,14 @@ import ReactDOM from 'react-dom'
 import './index.css'
 import App from './containers/App'
 import store from "./.store/store";
-
+import {Provider} from "./StoreContext"
 
 let rerender = (state) => {
     ReactDOM.render(
         <React.StrictMode>
-            <App
-                appState={state}
-                dispatch={store.dispatch.bind(store)}
-            />
+            <Provider store={store}>
+                <App/>
+            </Provider>
         </React.StrictMode>,
         document.getElementById('root')
     )

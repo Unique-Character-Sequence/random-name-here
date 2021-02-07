@@ -25,7 +25,7 @@ const Profile__postList = (props) => {
             rows="1"
             ref={newPostRef}/>
         <br/>
-        <button onClick={() => props.addPost}>Add post</button>
+        <button onClick={() => props.addPost()}>Add post</button>
         {/*addPost импортируем из контейнера. Там же и делаем addPost(props.PostAreaData)*/}
         <br/>
         <br/>
