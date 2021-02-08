@@ -32,7 +32,7 @@ const ChatsReducer = (state = InitialState, action) => {
             let newMsg = {
                 id: 999, // тут задуман счётчик
                 user_name: 'User1', // тут отслеживание id юзера должно быть
-                msg_content: action.msg_content
+                msg_content: state.MsgAreaData
             }
             state.User1_User2_Chat.push(newMsg)
             state.MsgAreaData = ""

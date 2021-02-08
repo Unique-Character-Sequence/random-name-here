@@ -18,7 +18,7 @@ const ProfileReducer = (state = InitialState, action) => {
             let newPost = {
                 id: 5, // тут задуман счётчик
                 user_name: 'Name_here Surname_here', // тут отслеживание id юзера
-                post_content: action.post_content,
+                post_content: state.PostAreaData,
                 likesAmount: 0 //тут задуман счётчик кликов
             }
             state.PostsArray.push(newPost)
@@ -34,8 +34,7 @@ const ProfileReducer = (state = InitialState, action) => {
 
 export const addPost_actionCreator = (text) => {
     return {
-        type: ADD_POST,
-        post_content: text
+        type: ADD_POST
     }
 }
 
