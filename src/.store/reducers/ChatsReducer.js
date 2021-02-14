@@ -28,18 +28,25 @@ let InitialState = {
 
 const ChatsReducer = (state = InitialState, action) => {
     switch (action.type) {
-        case SEND_MSG:
+        case SEND_MSG: {
             let newMsg = {
                 id: 999, // тут задуман счётчик
                 user_name: 'User1', // тут отслеживание id юзера должно быть
                 msg_content: state.MsgAreaData
             }
-            state.User1_User2_Chat.push(newMsg)
-            state.MsgAreaData = ""
-            return state
-        case UPDATE_MSG_INPUT_AREA:
-            state.MsgAreaData = action.msgInputUpdatedText
-            return state
+            let stateCopy = {...state}
+            stateCopy.User1_User2_Chat = [...state.User1_User2_Chat]
+            stateCopy.User1_User2_Chat.push(newMsg)
+            stateCopy.MsgAreaData = state.MsgAreaData
+            stateCopy.MsgAreaData = ""
+            return stateCopy
+        }
+        case UPDATE_MSG_INPUT_AREA: {
+            let stateCopy = {...state}
+            stateCopy.MsgAreaData = state.MsgAreaData
+            stateCopy.MsgAreaData = action.msgInputUpdatedText
+            return stateCopy
+        }
         default:
             return state
     }
@@ -53,6 +60,7 @@ export const sendMsg_actionCreator = (text) => {
 }
 
 export const updateMsgInputArea_actionCreator = (text) => {
+    debugger
     return {
         type: UPDATE_MSG_INPUT_AREA,
         msgInputUpdatedText: text

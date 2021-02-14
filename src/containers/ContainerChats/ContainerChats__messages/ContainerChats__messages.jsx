@@ -12,12 +12,12 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = (dispatch) => {
     return {
-        updateTextAreaData: (text) => {
-            let action = updateMsgInputArea_actionCreator(text)
-            dispatch(action)
-        },
         sendMsg: () => {
             let action = sendMsg_actionCreator()
+            dispatch(action)
+        },
+        updateTextAreaData: (text) => {
+            let action = updateMsgInputArea_actionCreator(text)
             dispatch(action)
         }
     }

@@ -11,4 +11,6 @@ let reducers = combineReducers({
 
 let store = createStore(reducers) // alt+enter для импорта
 
+window.store = store
+
 export default store

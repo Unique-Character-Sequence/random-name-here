@@ -13,7 +13,7 @@ const Chats__messages = (props) => {
 
     return <div className={classes.items}>
         {messagesElements}
-        <textarea onChange={props.updateTextAreaData}
+        <textarea onChange={() => props.updateTextAreaData(newMsgRef.current.value)} // () => чтоб был именно callback
                   placeholder={'Enter message'}
                   rows="1"
                   ref={newMsgRef}
