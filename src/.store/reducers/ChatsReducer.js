@@ -28,25 +28,21 @@ let InitialState = {
 
 const ChatsReducer = (state = InitialState, action) => {
     switch (action.type) {
-        case SEND_MSG: {
-            let newMsg = {
-                id: 999, // тут задуман счётчик
-                user_name: 'User1', // тут отслеживание id юзера должно быть
-                msg_content: state.MsgAreaData
+        case SEND_MSG:
+            return {
+                ...state,
+                User1_User2_Chat: [...state.User1_User2_Chat, { // Создаём копию пред. диалога + новое сообщение
+                    id: 999,
+                    user_name: 'User1',
+                    msg_content: state.MsgAreaData
+                }],
+                MsgAreaData: "" // Создаём MsgAreaData со значением из action
             }
-            let stateCopy = {...state}
-            stateCopy.User1_User2_Chat = [...state.User1_User2_Chat]
-            stateCopy.User1_User2_Chat.push(newMsg)
-            stateCopy.MsgAreaData = state.MsgAreaData
-            stateCopy.MsgAreaData = ""
-            return stateCopy
-        }
-        case UPDATE_MSG_INPUT_AREA: {
-            let stateCopy = {...state}
-            stateCopy.MsgAreaData = state.MsgAreaData
-            stateCopy.MsgAreaData = action.msgInputUpdatedText
-            return stateCopy
-        }
+        case UPDATE_MSG_INPUT_AREA:
+            return {
+                ...state,
+                MsgAreaData: action.msgInputUpdatedText // Создаём MsgAreaData со значением из action
+            }
         default:
             return state
     }
