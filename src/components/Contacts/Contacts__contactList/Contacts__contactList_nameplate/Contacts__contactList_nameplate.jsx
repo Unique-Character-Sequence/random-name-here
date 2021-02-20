@@ -10,7 +10,9 @@ const Contacts__contactList_nameplate = (props) => {
         <Contacts__contactList_nameplate_image user_img={props.user_img}/>
         <Contacts__contactList_nameplate_text chatContact={props.chatContact}
                                               deleteContact={props.deleteContact}
+                                              addContact={props.addContact}
                                               user_name={props.user_name}
+                                              added={props.added}
                                               id={props.id}/>
     </div>
 }
