@@ -4,8 +4,9 @@ import Contacts__contactList_nameplate from "./Contacts__contactList_nameplate/C
 
 const Contacts__contactList = (props) => {
     let contactsElements = props.AddedUsersArray.map(p => <Contacts__contactList_nameplate id={p.id}
-                                                                                                   user_name={p.user_name}
-                                                                                                   user_img={p.user_img}/>);
+                                                                                           deleteContact={props.deleteContact}
+                                                                                           user_name={p.user_name}
+                                                                                           user_img={p.user_img}/>);
     return <div className={classes.general}>
         Search_form:
         <br/>

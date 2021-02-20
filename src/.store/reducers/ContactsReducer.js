@@ -1,3 +1,6 @@
+const CHAT_CONTACT = 'CHAT_CONTACT'
+const DELETE_CONTACT = 'DELETE_CONTACT'
+
 let InitialState = {
     AddedUsersArray: [
         {
@@ -29,8 +32,37 @@ let InitialState = {
 }
 
 const ContactsReducer = (state = InitialState, action) => {
+    switch (action.type) {
+        case CHAT_CONTACT:
+            return {
+                ...state,
+            }
+        case DELETE_CONTACT:
+            //
+            // let stateCopy = {...state}
+            // stateCopy.AddedUsersArray.splice(action.contact_id, 1)
+            // return stateCopy
+            return {
+                ...state,
+                AddedUsersArray: [...state.AddedUsersArray].splice(action.contact_id, 1) // Не меняем поступивший стейт, а его копию, ибо иммьютабельность
+            }
+        default:
+            return state
+    }
+}
 
-    return state
+export const chatContact_actionCreator = (id) => {
+    return {
+        type: CHAT_CONTACT,
+        contact_id: id
+    }
+}
+
+export const deleteContact_actionCreator = (id) => {
+    return {
+        type: DELETE_CONTACT,
+        contact_id: id
+    }
 }
 
 export default ContactsReducer

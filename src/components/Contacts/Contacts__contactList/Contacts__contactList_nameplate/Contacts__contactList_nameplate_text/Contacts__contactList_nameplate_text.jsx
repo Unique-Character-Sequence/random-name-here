@@ -6,8 +6,8 @@ const Contacts__contactList_nameplate_text = (props) => {
     return <div className={classes.item}>
         <NavLink to={'/contacts/' + props.id} activeClassName={classes.active}>{props.user_name}</NavLink>
         <br/>
-        <button>Chat</button> {/*Переход по ссылке*/}
-        <button>Delete</button> {/*Обращение к id*/}
+        <button onClick={props.chatContact}>Chat</button> {/*Переход по ссылке*/}
+        <button onClick={() => props.deleteContact(props.id)}>Delete</button> {/*Обращение к id*/}
         <br/>
         <br/>
     </div>

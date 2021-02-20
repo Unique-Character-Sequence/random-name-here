@@ -1,12 +1,12 @@
 import classes from './Contacts.module.css'
-import Contacts__contactList from "./Contacts__contactList/Contacts__contactList";
+import ContainerContacts__contactList
+    from "../../containers/ContainerContacts/ContainerContacts__contactList/ContainerContacts__contactList";
 
 
-const Contacts = (props) => {
+const Contacts = () => {
     return <div className={classes.general}>
-        <Contacts__contactList AddedUsersArray={props.ContactsComponentStates.AddedUsersArray}/>
+        <ContainerContacts__contactList/>
     </div>
 }
-
 
 export default Contacts;
