@@ -11,14 +11,15 @@ const Contacts__contactList = (props) => {
                     props.addUserToState(response.data)
                     })
                 }
-
+// Здесь мы передаём в компонент данные из пропсов
     let contactsElements = props.UsersArray.map(p => <Contacts__contactList_nameplate id={p.id}
                                                                                       deleteContact={props.deleteContact}
                                                                                       addContact={props.addContact}
                                                                                       chatContact={props.chatContact}
                                                                                       user_name={p.name}
                                                                                       added={p.followed}
-                                                                                      user_img={p.user_img}/>);
+                                                                                      user_img={p.photos.small}/>);
+
     return <div className={classes.general}>
         Search_form:
         <br/>
