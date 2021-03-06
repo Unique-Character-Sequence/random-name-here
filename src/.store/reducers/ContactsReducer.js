@@ -5,38 +5,6 @@ const ADD_USER_TO_STATE = 'ADD_USER_TO_STATE'
 
 let InitialState = {
     UsersArray: []
-    // UsersArray: [
-    //     {
-    //         id: 0,
-    //         name: 'Georgo Biba',
-    //         photos: 'https://i.pinimg.com/originals/12/fe/52/12fe5285187f896e3ed6feaba04894be.jpg',
-    //         followed: false
-    //     },
-    //     {
-    //         id: 1,
-    //         name: 'Geo22rgo Biba',
-    //         photos: 'https://modnica.info/wp-content/uploads/2016/02/0902-52.jpg',
-    //         followed: true
-    //     },
-    //     {
-    //         id: 2,
-    //         name: 'Geor11g333o Biba',
-    //         photos: 'https://ptel.cz/wp-content/uploads/2019/12/123.png',
-    //         followed: true
-    //     },
-    //     {
-    //         id: 3,
-    //         name: 'Georg333o Biba',
-    //         photos: 'https://img.pravda.com/images/doc/0/3/03b8519-755671822123025.jpeg.jpg',
-    //         followed: false
-    //     },
-    //     {
-    //         id: 4,
-    //         name: 'Georg1333o Biba',
-    //         photos: 'https://s0.rbk.ru/v6_top_pics/media/img/7/32/755879164960327.jpg',
-    //         followed: true
-    //     }
-    // ],
 }
 
 const ContactsReducer = (state = InitialState, action) => {

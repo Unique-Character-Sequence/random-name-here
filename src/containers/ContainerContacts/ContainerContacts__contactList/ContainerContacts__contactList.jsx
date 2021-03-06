@@ -7,6 +7,7 @@ import {
 } from "../../../.store/reducers/ContactsReducer";
 
 let mapStateToProps = (state) => {
+    //console.log('state:::',state) // отслеживаем state
     return {
         UsersArray: state.ContactsComponentStates.UsersArray
     }
