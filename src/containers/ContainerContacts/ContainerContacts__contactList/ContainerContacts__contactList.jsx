@@ -9,7 +9,9 @@ import {
 let mapStateToProps = (state) => {
     //console.log('state:::',state) // отслеживаем state
     return {
-        UsersArray: state.ContactsComponentStates.UsersArray
+        UsersArray: state.ContactsComponentStates.UsersArray,
+        pageSize: state.ContactsComponentStates.pageSize, // Свойство state. Количество элементов на странице
+        totalUsersCount: state.ContactsComponentStates.totalUsersCount, // Свойство state. Общее количество юзеров в UsersArray
     }
 }
 
@@ -34,6 +36,6 @@ let mapDispatchToProps = (dispatch) => {
     }
 }
 
-const ContainerContacts__contactList = connect(mapStateToProps, mapDispatchToProps)(Contacts__contactList)
+const ContainerContacts__contactList = connect(mapStateToProps, mapDispatchToProps)(Contacts__contactList) // В контакт лист передаётся пропс и методы для диспатча экшнов
 
 export default ContainerContacts__contactList

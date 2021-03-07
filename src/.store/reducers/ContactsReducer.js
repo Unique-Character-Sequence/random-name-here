@@ -4,7 +4,10 @@ const DELETE_CONTACT = 'DELETE_CONTACT'
 const ADD_USER_TO_STATE = 'ADD_USER_TO_STATE'
 
 let InitialState = {
-    UsersArray: []
+    UsersArray: [],
+    pageSize: 5, // Это значение возвращается с сервера, но так оно изначальноне зависит отя сервера
+    totalUsersCount: 0,
+    currentPage: 1 // Потому это страница, которая подсвечивается в UI
 }
 
 const ContactsReducer = (state = InitialState, action) => {

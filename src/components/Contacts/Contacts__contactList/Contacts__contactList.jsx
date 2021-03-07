@@ -26,6 +26,8 @@ class Contacts__contactList extends react.Component {
     }
 
     render() {
+        let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize) // Из контейнера получаем пропсы
+
         return <div className={classes.general}>
             Search_form:
             <br/>
