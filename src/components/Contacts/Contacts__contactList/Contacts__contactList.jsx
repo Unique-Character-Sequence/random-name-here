@@ -6,19 +6,9 @@ import defaultUserImage from "../../../assets/img/defaultpic_user.png";
 import {NavLink} from "react-router-dom";
 
 class Contacts__contactList extends react.Component {
-// Здесь мы передаём в компонент данные из пропсов
-//     contactsElements = this.props.UsersArray.map(p => <Contacts__contactList_nameplate id={p.id}
-//                                                                                        deleteContact={this.props.deleteContact}
-//                                                                                        addContact={this.props.addContact}
-//                                                                                        chatContact={this.props.chatContact}
-//                                                                                        user_name={p.name}
-//                                                                                        added={p.followed}
-//                                                                                        user_img={p.photos.small}/>);
-    //contactsElements = this.props.UsersArray.map(p => <div><img
-    //src={p.user_img != null ? p.user_img : defaultUserImage} alt=""/>qwes</div>)
-
     componentDidMount() {
-        axios.get("https://social-network.samuraijs.com/api/1.0/users")
+        // Запрашиваем определенное количество элементов
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
             .then(
                 response => {
                     this.props.addUserToState(response.data)
@@ -27,8 +17,12 @@ class Contacts__contactList extends react.Component {
 
     render() {
         let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize) // Из контейнера получаем пропсы
-
+        let pagesNumbersShown = [] // Список цифр, которые будут отображаться в баре переключения странице
+        for (let i = 0; i <= pagesCount; i++) {
+            pagesNumbersShown.push(i)
+        }
         return <div className={classes.general}>
+            {pagesNumbersShown.map(p=>)}
             Search_form:
             <br/>
             Contacts:
