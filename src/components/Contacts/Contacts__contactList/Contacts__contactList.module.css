@@ -24,3 +24,7 @@
     border: 3px solid blueviolet;
     border-radius: 50%;
 }
+
+.selectedPage {
+    font-weight: bold;
+}

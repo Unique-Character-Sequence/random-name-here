@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {
     addContact_actionCreator, addUserToState_actionCreator,
     chatContact_actionCreator,
-    deleteContact_actionCreator
+    deleteContact_actionCreator, setCurrentPage_actionCreator, setUsersCount_actionCreator
 } from "../../../.store/reducers/ContactsReducer";
 
 let mapStateToProps = (state) => {
@@ -12,6 +12,7 @@ let mapStateToProps = (state) => {
         UsersArray: state.ContactsComponentStates.UsersArray,
         pageSize: state.ContactsComponentStates.pageSize, // Свойство state. Количество элементов на странице
         totalUsersCount: state.ContactsComponentStates.totalUsersCount, // Свойство state. Общее количество юзеров в UsersArray
+        currentPage: state.ContactsComponentStates.currentPage, // Свойство state. Нынешняя открытая страница.
     }
 }
 
@@ -31,6 +32,14 @@ let mapDispatchToProps = (dispatch) => {
         },
         addUserToState: (id) => {
             let action = addUserToState_actionCreator(id)
+            dispatch(action)
+        },
+        setCurrentPage: (id) => {
+            let action = setCurrentPage_actionCreator(id)
+            dispatch(action)
+        },
+        setUsersCount: (id) => {
+            let action = setUsersCount_actionCreator(id)
             dispatch(action)
         }
     }

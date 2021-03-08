@@ -2,6 +2,8 @@ const CHAT_CONTACT = 'CHAT_CONTACT'
 const ADD_CONTACT = 'ADD_CONTACT'
 const DELETE_CONTACT = 'DELETE_CONTACT'
 const ADD_USER_TO_STATE = 'ADD_USER_TO_STATE'
+const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
+const SET_USERS_COUNT = 'SET_USERS_COUNT'
 
 let InitialState = {
     UsersArray: [],
@@ -34,9 +36,18 @@ const ContactsReducer = (state = InitialState, action) => {
                     return m
                 })
             }
+        case SET_CURRENT_PAGE:
+            return {
+                ...state, currentPage: action.page_id
+            }
+        case SET_USERS_COUNT:
+            return {
+                ...state, totalUsersCount: action.totalUsersCount
+            }
         case ADD_USER_TO_STATE:
             return {
-                ...state, UsersArray: [...state.UsersArray, ...action.UsersFromDB.items] // Склеиваем 2 массива
+                //...state, UsersArray: [...state.UsersArray, ...action.UsersFromDB.items] // Склеиваем 2 массива
+                ...state, UsersArray: [...action.UsersFromDB.items] // Заменяем массив
             }
         default:
             return state
@@ -67,7 +78,21 @@ export const chatContact_actionCreator = (id) => {
 export const addUserToState_actionCreator = (UsersFromDB) => {
     return {
         type: ADD_USER_TO_STATE,
-        UsersFromDB: UsersFromDB
+        UsersFromDB // UsersFromDB: UsersFromDB
+    }
+}
+
+export const setUsersCount_actionCreator = (totalUsersCount) => {
+    return {
+        type: SET_USERS_COUNT,
+        totalUsersCount // totalUsersCount: totalUsersCount
+    }
+}
+
+export const setCurrentPage_actionCreator = (page_id) => {
+    return {
+        type: SET_CURRENT_PAGE,
+        page_id // page_id: page_id
     }
 }
 
