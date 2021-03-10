@@ -22,12 +22,11 @@ class ContainerContacts__contactList extends react.Component {
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
             .then(
                 response => {
+                    this.props.isFetchingSwitch(false) // Данные УЖЕ пришли, а значит можно скрыть
                     this.props.setUsersCount(response.data.totalCount)
                     this.props.addUserToState(response.data)
                 })
-        this.props.isFetchingSwitch(false)
     }
-
     onPageChange = (pageNumber) => {
         this.props.isFetchingSwitch(true)
         // Вызывается при нажатии пользователя на кнопку смены страницы. Отправляет в стейт цифру на которую нажали,
@@ -37,9 +36,9 @@ class ContainerContacts__contactList extends react.Component {
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
             .then(
                 response => {
+                    this.props.isFetchingSwitch(false)
                     this.props.addUserToState(response.data)
                 })
-        this.props.isFetchingSwitch(false)
     }
 
     render() {
@@ -69,7 +68,6 @@ let mapStateToProps = (state) => {
         UsersArray: state.ContactsComponentStates.UsersArray,
         // Свойство state. Количество элементов на странице
         pageSize: state.ContactsComponentStates.pageSize,
-        // Свойство state. Общее количество юзеров в UsersArray
         totalUsersCount: state.ContactsComponentStates.totalUsersCount,
         currentPage: state.ContactsComponentStates.currentPage,
         isFetching: state.ContactsComponentStates.isFetching,

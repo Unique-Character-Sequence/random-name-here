@@ -9,6 +9,7 @@ const IS_FETCHING_SWITCH = 'IS_FETCHING_SWITCH'
 let InitialState = {
     UsersArray: [],
     pageSize: 5, // Это значение возвращается с сервера, но так оно изначальноне зависит отя сервера
+    // Свойство state. Общее количество юзеров в UsersArray
     totalUsersCount: 0,
     // Свойство state. Нынешняя открытая страница.
     currentPage: 1, // Потому это страница, которая подсвечивается в UI
@@ -41,7 +42,7 @@ const ContactsReducer = (state = InitialState, action) => {
             }
         case SET_CURRENT_PAGE:
             return {
-                ...state, currentPage: action.page_id
+                ...state, currentPage: action.currentPage
             }
         case SET_USERS_COUNT:
             return {
@@ -97,16 +98,16 @@ export const setUsersCount_actionCreator = (totalUsersCount) => {
     }
 }
 
-export const setCurrentPage_actionCreator = (page_id) => {
+export const setCurrentPage_actionCreator = (currentPage) => {
     return {
         type: SET_CURRENT_PAGE,
-        page_id // page_id: page_id
+        currentPage // currentPage: currentPage
     }
 }
 
 export const isFetchingSwitch_actionCreator = (isFetching) => {
     return {
-        type: SET_CURRENT_PAGE,
+        type: IS_FETCHING_SWITCH,
         isFetching
     }
 }
