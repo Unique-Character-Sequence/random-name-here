@@ -4,12 +4,15 @@ const DELETE_CONTACT = 'DELETE_CONTACT'
 const ADD_USER_TO_STATE = 'ADD_USER_TO_STATE'
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
 const SET_USERS_COUNT = 'SET_USERS_COUNT'
+const IS_FETCHING_SWITCH = 'IS_FETCHING_SWITCH'
 
 let InitialState = {
     UsersArray: [],
     pageSize: 5, // Это значение возвращается с сервера, но так оно изначальноне зависит отя сервера
     totalUsersCount: 0,
-    currentPage: 1 // Потому это страница, которая подсвечивается в UI
+    // Свойство state. Нынешняя открытая страница.
+    currentPage: 1, // Потому это страница, которая подсвечивается в UI
+    isFetching: false // Происходит ли загрузка
 }
 
 const ContactsReducer = (state = InitialState, action) => {
@@ -48,6 +51,11 @@ const ContactsReducer = (state = InitialState, action) => {
             return {
                 //...state, UsersArray: [...state.UsersArray, ...action.UsersFromDB.items] // Склеиваем 2 массива
                 ...state, UsersArray: [...action.UsersFromDB.items] // Заменяем массив
+            }
+        case IS_FETCHING_SWITCH:
+            return {
+                //...state, UsersArray: [...state.UsersArray, ...action.UsersFromDB.items] // Склеиваем 2 массива
+                ...state, isFetching: action.isFetching // Заменяем массив
             }
         default:
             return state
@@ -93,6 +101,13 @@ export const setCurrentPage_actionCreator = (page_id) => {
     return {
         type: SET_CURRENT_PAGE,
         page_id // page_id: page_id
+    }
+}
+
+export const isFetchingSwitch_actionCreator = (isFetching) => {
+    return {
+        type: SET_CURRENT_PAGE,
+        isFetching
     }
 }
 
