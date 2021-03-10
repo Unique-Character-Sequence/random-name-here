@@ -5,14 +5,61 @@ import {
     chatContact_actionCreator,
     deleteContact_actionCreator, setCurrentPage_actionCreator, setUsersCount_actionCreator
 } from "../../../.store/reducers/ContactsReducer";
+import * as axios from "axios";
+import * as react from "react";
+
+class ContainerContacts__contactList extends react.Component {
+    componentDidMount() {
+        // (Делает определенные действия сразу после монтирования)
+        // Запрашиваем с сервера определенное количество элементов, а затем отправляем их в стейт
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+            .then(
+                response => {
+                    this.props.setUsersCount(response.data.totalCount)
+                    this.props.addUserToState(response.data)
+                })
+    }
+
+    onPageChange = (pageNumber) => {
+        // Вызывается при нажатии пользователя на кнопку смены страницы. Отправляет в стейт цифру на которую нажали,
+        // а также запрашивает с сервера и отправляет в стейт информацию со страницы под номером, на который нажали.
+        this.props.setCurrentPage(pageNumber)
+        // внизу не {this.props.currentPage}, а {pageNumber}, потому что инструкции сначала отработают с имеющимися пропсами
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
+            .then(
+                response => {
+                    this.props.addUserToState(response.data)
+                })
+    }
+
+    render() {
+        // Отрисовка функционального компонента.
+        return <Contacts__contactList UsersArray={this.props.UsersArray}
+                                      onPageChange={this.onPageChange}
+                                      totalUsersCount={this.props.totalUsersCount}
+                                      pageSize={this.props.pageSize}
+                                      addContact={this.props.addContact}
+                                      deleteContact={this.props.deleteContact}
+                                      chatContact={this.props.chatContact}
+                                      addUserToState={this.props.addUserToState}
+                                      setCurrentPage={this.props.setCurrentPage}
+                                      setUsersCount={this.props.setUsersCount}
+                                      currentPage={this.props.currentPage}
+        />
+    }
+}
 
 let mapStateToProps = (state) => {
     //console.log('state:::',state) // отслеживаем state
     return {
+        // Свойство state. Массив отображаемых пользователей
         UsersArray: state.ContactsComponentStates.UsersArray,
-        pageSize: state.ContactsComponentStates.pageSize, // Свойство state. Количество элементов на странице
-        totalUsersCount: state.ContactsComponentStates.totalUsersCount, // Свойство state. Общее количество юзеров в UsersArray
-        currentPage: state.ContactsComponentStates.currentPage, // Свойство state. Нынешняя открытая страница.
+        // Свойство state. Количество элементов на странице
+        pageSize: state.ContactsComponentStates.pageSize,
+        // Свойство state. Общее количество юзеров в UsersArray
+        totalUsersCount: state.ContactsComponentStates.totalUsersCount,
+        // Свойство state. Нынешняя открытая страница.
+        currentPage: state.ContactsComponentStates.currentPage,
     }
 }
 
@@ -45,6 +92,4 @@ let mapDispatchToProps = (dispatch) => {
     }
 }
 
-const ContainerContacts__contactList = connect(mapStateToProps, mapDispatchToProps)(Contacts__contactList) // В контакт лист передаётся пропс и методы для диспатча экшнов
-
-export default ContainerContacts__contactList
+export default connect(mapStateToProps, mapDispatchToProps)(ContainerContacts__contactList)
