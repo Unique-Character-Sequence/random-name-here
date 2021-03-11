@@ -35,8 +35,13 @@ let Contacts__contactList = (props) => {
 
         {props.UsersArray.map(p => <div>
             <div className={classes.item}>
+                <img src={p.photos.small ? p.photos.small : defaultUserImage} alt=""/>
+            </div>
+            <div className={classes.item}>
                 <NavLink to={'/contacts/' + p.id}
                          activeClassName={classes.active}>{p.name}</NavLink>
+                <br/>
+                {p.status ? <div> Status: {p.status}</div> : null}
                 <br/>
                 <button onClick={p.chatContact}>Chat</button>
                 {
@@ -47,9 +52,7 @@ let Contacts__contactList = (props) => {
                 <br/>
                 <br/>
             </div>
-            <div className={classes.item}>
-                <img src={p.photos.small != null ? p.user_img : defaultUserImage} alt=""/>
-            </div>
+
         </div>)}
     </div>
 }

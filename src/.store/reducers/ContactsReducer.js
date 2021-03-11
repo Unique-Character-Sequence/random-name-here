@@ -63,49 +63,49 @@ const ContactsReducer = (state = InitialState, action) => {
     }
 }
 
-export const addContact_actionCreator = (id) => {
+export const addContact = (id) => {
     return {
         type: ADD_CONTACT,
         contact_id: id
     }
 }
 
-export const deleteContact_actionCreator = (id) => {
+export const deleteContact = (id) => {
     return {
         type: DELETE_CONTACT,
         contact_id: id
     }
 }
 
-export const chatContact_actionCreator = (id) => {
+export const chatContact = (id) => {
     return {
         type: CHAT_CONTACT,
         contact_id: id
     }
 }
 
-export const addUserToState_actionCreator = (UsersFromDB) => {
+export const addUserToState = (UsersFromDB) => {
     return {
         type: ADD_USER_TO_STATE,
         UsersFromDB // UsersFromDB: UsersFromDB
     }
 }
 
-export const setUsersCount_actionCreator = (totalUsersCount) => {
+export const setUsersCount = (totalUsersCount) => {
     return {
         type: SET_USERS_COUNT,
         totalUsersCount // totalUsersCount: totalUsersCount
     }
 }
 
-export const setCurrentPage_actionCreator = (currentPage) => {
+export const setCurrentPage = (currentPage) => {
     return {
         type: SET_CURRENT_PAGE,
         currentPage // currentPage: currentPage
     }
 }
 
-export const isFetchingSwitch_actionCreator = (isFetching) => {
+export const isFetchingSwitch = (isFetching) => {
     return {
         type: IS_FETCHING_SWITCH,
         isFetching

@@ -1,13 +1,13 @@
 import Contacts__contactList from "../../../components/Contacts/Contacts__contactList/Contacts__contactList";
 import {connect} from "react-redux";
 import {
-    addContact_actionCreator,
-    addUserToState_actionCreator,
-    chatContact_actionCreator,
-    deleteContact_actionCreator,
-    isFetchingSwitch_actionCreator,
-    setCurrentPage_actionCreator,
-    setUsersCount_actionCreator
+    addContact,
+    addUserToState,
+    chatContact,
+    deleteContact,
+    isFetchingSwitch,
+    setCurrentPage,
+    setUsersCount
 } from "../../../.store/reducers/ContactsReducer";
 import * as axios from "axios";
 import * as react from "react";
@@ -27,6 +27,7 @@ class ContainerContacts__contactList extends react.Component {
                     this.props.addUserToState(response.data)
                 })
     }
+
     onPageChange = (pageNumber) => {
         this.props.isFetchingSwitch(true)
         // Вызывается при нажатии пользователя на кнопку смены страницы. Отправляет в стейт цифру на которую нажали,
@@ -36,6 +37,7 @@ class ContainerContacts__contactList extends react.Component {
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
             .then(
                 response => {
+                    console.log(response.data)
                     this.props.isFetchingSwitch(false)
                     this.props.addUserToState(response.data)
                 })
@@ -74,37 +76,14 @@ let mapStateToProps = (state) => {
     }
 }
 
-let mapDispatchToProps = (dispatch) => {
-    return {
-        addContact: (id) => {
-            let action = addContact_actionCreator(id)
-            dispatch(action)
-        },
-        deleteContact: (id) => {
-            let action = deleteContact_actionCreator(id)
-            dispatch(action)
-        },
-        chatContact: (id) => {
-            let action = chatContact_actionCreator(id)
-            dispatch(action)
-        },
-        addUserToState: (id) => {
-            let action = addUserToState_actionCreator(id)
-            dispatch(action)
-        },
-        setCurrentPage: (id) => {
-            let action = setCurrentPage_actionCreator(id)
-            dispatch(action)
-        },
-        setUsersCount: (id) => {
-            let action = setUsersCount_actionCreator(id)
-            dispatch(action)
-        },
-        isFetchingSwitch: (id) => {
-            let action = isFetchingSwitch_actionCreator(id)
-            dispatch(action)
-        }
-    }
+let mapDispatchToProps = {
+    addContact,
+    deleteContact,
+    chatContact,
+    addUserToState,
+    setCurrentPage,
+    setUsersCount,
+    isFetchingSwitch
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContainerContacts__contactList)
