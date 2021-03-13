@@ -35,10 +35,13 @@ let Contacts__contactList = (props) => {
 
         {props.UsersArray.map(p => <div>
             <div className={classes.item}>
-                <img src={p.photos.small ? p.photos.small : defaultUserImage} alt=""/>
+                <NavLink to={'/profile/' + p.id}>
+                    <img src={p.photos.small ? p.photos.small : defaultUserImage} alt=""/>
+                </NavLink>
             </div>
+
             <div className={classes.item}>
-                <NavLink to={'/contacts/' + p.id}
+                <NavLink to={'/profile/' + p.id}
                          activeClassName={classes.active}>{p.name}</NavLink>
                 <br/>
                 {p.status ? <div> Status: {p.status}</div> : null}

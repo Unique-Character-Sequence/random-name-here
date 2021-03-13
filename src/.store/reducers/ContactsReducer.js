@@ -55,8 +55,7 @@ const ContactsReducer = (state = InitialState, action) => {
             }
         case IS_FETCHING_SWITCH:
             return {
-                //...state, UsersArray: [...state.UsersArray, ...action.UsersFromDB.items] // Склеиваем 2 массива
-                ...state, isFetching: action.isFetching // Заменяем массив
+                ...state, isFetching: action.isFetching
             }
         default:
             return state
@@ -111,5 +110,6 @@ export const isFetchingSwitch = (isFetching) => {
         isFetching
     }
 }
+
 
 export default ContactsReducer

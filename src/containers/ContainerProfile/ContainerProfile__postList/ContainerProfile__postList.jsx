@@ -1,28 +1,47 @@
 import Profile__postList from "../../../components/Profile/Profile__postList/Profile__postList";
-import {addPost_actionCreator, updateAddPostArea_actionCreator} from "../../../.store/reducers/ProfileReducer";
+import {
+    addPost, isFetchingSwitch,
+    updateAddPostArea, setProfileData
+} from "../../../.store/reducers/ProfileReducer";
 import {connect} from "react-redux";
+import * as react from "react";
+import * as axios from "axios";
+import Preloader from "../../../assets/Preloader";
 
-let mapStateToProps = (state) => {
-    return {
-        PostsArray: state.ProfileComponentStates.PostsArray,
-        PostAreaData: state.ProfileComponentStates.PostAreaData
+class ContainerProfile__postList extends react.Component {
+    componentDidMount() {
+        this.props.isFetchingSwitch(true)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/6178`)
+            .then(
+                response => {
+                    this.props.isFetchingSwitch(false) // Данные УЖЕ пришли, а значит можно скрыть preloader
+                    this.props.setProfileData(
+                        response.data.fullName,
+                        response.data.photos.large,
+                        response.data.lookingForAJobDescription
+                    )
+                })
+    }
+
+    render() {
+        // Такая форма записи означает, что мы передаём все сущности внутри props, как одноимённые атрибуты.
+        return <>
+            {this.props.isFetching
+                ? <Preloader/>
+                : <Profile__postList {...this.props}/>
+            }
+        </>
     }
 }
 
-let mapDispatchToProps = (dispatch) => {
-    return {
-        addPost: () => {
-            let action = addPost_actionCreator()
-            dispatch(action)
-        },
-        updateAddPostArea: (text) => {
-            let action = updateAddPostArea_actionCreator(text)
-            dispatch(action)
-        }
 
-    }
+let mapStateToProps = (state) => ({...state.ProfileComponentStates})
+
+let mapDispatchToProps = {
+    addPost,
+    updateAddPostArea,
+    isFetchingSwitch,
+    setProfileData
 }
 
-const ContainerProfile__postList = connect(mapStateToProps, mapDispatchToProps)(Profile__postList)
-
-export default ContainerProfile__postList
+export default connect(mapStateToProps, mapDispatchToProps)(ContainerProfile__postList)

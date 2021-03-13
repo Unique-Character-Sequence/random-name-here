@@ -11,7 +11,7 @@ import {
 } from "../../../.store/reducers/ContactsReducer";
 import * as axios from "axios";
 import * as react from "react";
-import preloader from "../../../assets/svg/preloader_200px.svg"
+import Preloader from "../../../assets/Preloader"
 
 
 class ContainerContacts__contactList extends react.Component {
@@ -46,7 +46,7 @@ class ContainerContacts__contactList extends react.Component {
     render() {
         // Отрисовка функционального компонента.
         return <>
-            {this.props.isFetching ? <img src={preloader} alt=""/> : null}
+            {this.props.isFetching ? <Preloader/> : null}
             <Contacts__contactList UsersArray={this.props.UsersArray}
                                    onPageChange={this.onPageChange}
                                    totalUsersCount={this.props.totalUsersCount}
@@ -63,18 +63,7 @@ class ContainerContacts__contactList extends react.Component {
     }
 }
 
-let mapStateToProps = (state) => {
-    //console.log('state:::',state) // отслеживаем state
-    return {
-        // Свойство state. Массив отображаемых пользователей
-        UsersArray: state.ContactsComponentStates.UsersArray,
-        // Свойство state. Количество элементов на странице
-        pageSize: state.ContactsComponentStates.pageSize,
-        totalUsersCount: state.ContactsComponentStates.totalUsersCount,
-        currentPage: state.ContactsComponentStates.currentPage,
-        isFetching: state.ContactsComponentStates.isFetching,
-    }
-}
+let mapStateToProps = (state) => ({...state.ContactsComponentStates})
 
 let mapDispatchToProps = {
     addContact,

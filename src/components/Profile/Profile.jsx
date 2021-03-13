@@ -7,8 +7,8 @@ import ContainerProfile__postList
 
 const Profile = () => {
     return <div className={classes.general}>
-        <Profile__menu_topInfo/>
-        <Profile__gallery/>
+        {/*<Profile__menu_topInfo/>*/}
+        {/*<Profile__gallery/>*/}
         <ContainerProfile__postList/>
     </div>
 }
