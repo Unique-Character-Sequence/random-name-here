@@ -7,11 +7,18 @@ import {connect} from "react-redux";
 import * as react from "react";
 import * as axios from "axios";
 import Preloader from "../../../assets/Preloader";
+import {withRouter} from "react-router-dom";
 
 class ContainerProfile__postList extends react.Component {
     componentDidMount() {
+        //debugger чтоб прочекать пропсы
         this.props.isFetchingSwitch(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/6178`)
+        let userID = this.props.match.params.userID
+        if (!userID){
+            // Очевидно, что вместо 6768 нужно будет брать параметры залогиненного юзера
+            userID = 6768;
+        }
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userID}`)
             .then(
                 response => {
                     this.props.isFetchingSwitch(false) // Данные УЖЕ пришли, а значит можно скрыть preloader
@@ -44,4 +51,7 @@ let mapDispatchToProps = {
     setProfileData
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ContainerProfile__postList)
+
+let WithURIDataContainerComponent = withRouter(ContainerProfile__postList)
+
+export default connect(mapStateToProps, mapDispatchToProps)(WithURIDataContainerComponent)

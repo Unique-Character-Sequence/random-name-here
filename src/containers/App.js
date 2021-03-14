@@ -19,7 +19,7 @@ const App = () => {
                 <Header/>
                 <Sidebar/>
                 <div className='app-wrapper-content'>
-                    <Route path="/profile"
+                    <Route path="/profile/:userID?"
                            render={() => <Profile/>}/>
                     <Route path="/chats"
                            render={() => <Chats/>}/>
