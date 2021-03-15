@@ -1,6 +1,7 @@
 import './App.css'
 import Header from '../components/Header/Header'
 import Sidebar from '../components/Sidebar/Sidebar'
+import ContainerHeader from '../containers/ContainerHeader/ContainerHeader'
 
 import Profile from '../components/Profile/Profile'
 import Feed from '../components/Feed/Feed'
@@ -16,7 +17,7 @@ const App = () => {
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
-                <Header/>
+                <ContainerHeader/>
                 <Sidebar/>
                 <div className='app-wrapper-content'>
                     <Route path="/profile/:userID?"

@@ -3,7 +3,7 @@
   height: auto;
   margin: 0 auto;
   display: grid;
-  grid-template: 30% 1fr / 1fr 9fr;
+  grid-template: 30% 1fr / 3fr 17fr;
   grid-template-areas:
   "h h"
   "s m";

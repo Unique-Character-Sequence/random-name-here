@@ -23,7 +23,8 @@ class ContainerProfile__postList extends react.Component {
                 response => {
                     this.props.isFetchingSwitch(false) // Данные УЖЕ пришли, а значит можно скрыть preloader
                     this.props.setProfileData(
-                        response.data.fullName,
+                        //response.data.fullName,
+                        this.props.login,
                         response.data.photos.large,
                         response.data.lookingForAJobDescription
                     )
@@ -42,7 +43,9 @@ class ContainerProfile__postList extends react.Component {
 }
 
 
-let mapStateToProps = (state) => ({...state.ProfileComponentStates})
+let mapStateToProps = (state) => ({
+    ...state.ProfileComponentStates,
+    login: state.AuthReducer.login})
 
 let mapDispatchToProps = {
     addPost,
