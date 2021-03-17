@@ -16,7 +16,7 @@ class ContainerProfile__postList extends react.Component {
         let userID = this.props.match.params.userID
         if (!userID){
             // Очевидно, что вместо 6768 нужно будет брать параметры залогиненного юзера
-            userID = 6768;
+            userID = 15770;
         }
         UsersDA.getProfileData(userID)
             .then(
@@ -24,7 +24,7 @@ class ContainerProfile__postList extends react.Component {
                     this.props.isFetchingSwitch(false) // Данные УЖЕ пришли, а значит можно скрыть preloader
                     this.props.setProfileData(
                         //response.data.fullName,
-                        this.props.login,
+                        response.fullName,
                         response.photos.large,
                         response.lookingForAJobDescription
                     )
