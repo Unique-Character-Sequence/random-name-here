@@ -5,9 +5,9 @@ import {
 } from "../../../.store/reducers/ProfileReducer";
 import {connect} from "react-redux";
 import * as react from "react";
-import * as axios from "axios";
 import Preloader from "../../../assets/Preloader";
 import {withRouter} from "react-router-dom";
+import {UsersDA} from "../../../DAL/DataAccess";
 
 class ContainerProfile__postList extends react.Component {
     componentDidMount() {
@@ -18,15 +18,15 @@ class ContainerProfile__postList extends react.Component {
             // Очевидно, что вместо 6768 нужно будет брать параметры залогиненного юзера
             userID = 6768;
         }
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userID}`)
+        UsersDA.getProfileData(userID)
             .then(
                 response => {
                     this.props.isFetchingSwitch(false) // Данные УЖЕ пришли, а значит можно скрыть preloader
                     this.props.setProfileData(
                         //response.data.fullName,
                         this.props.login,
-                        response.data.photos.large,
-                        response.data.lookingForAJobDescription
+                        response.photos.large,
+                        response.lookingForAJobDescription
                     )
                 })
     }

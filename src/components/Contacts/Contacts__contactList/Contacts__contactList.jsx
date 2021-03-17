@@ -1,8 +1,8 @@
 import classes from './Contacts__contactList.module.css'
 import defaultUserImage from "../../../assets/img/defaultpic_user.png";
 import {NavLink} from "react-router-dom";
+import {UsersDA} from "../../../DAL/DataAccess";
 
-// Should i write a note here
 let Contacts__contactList = (props) => {
     // Количество необходимых для отображения цифр
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
@@ -48,14 +48,30 @@ let Contacts__contactList = (props) => {
                 <br/>
                 <button onClick={p.chatContact}>Chat</button>
                 {
-                    p.followed ?
-                        <button onClick={() => props.deleteContact(p.id)}>У Вас в друзьях</button> :
-                        <button onClick={() => props.addContact(p.id)}>Добавить</button>
+                    p.followed
+                        ? <button onClick={() => {
+                            UsersDA.deleteContact(p.id)
+                                .then(
+                                    response => {
+                                        if (response.resultCode === 0) {
+                                            props.deleteContact(p.id)
+                                        }
+                                    })
+                        }}>У Вас в друзьях</button>
+
+                        : <button onClick={() => {
+                            UsersDA.addContact(p.id)
+                                .then(
+                                    response => {
+                                        if (response.resultCode === 0) {
+                                            props.addContact(p.id)
+                                        }
+                                    })
+                        }}>Добавить</button>
                 }
                 <br/>
                 <br/>
             </div>
-
         </div>)}
     </div>
 }

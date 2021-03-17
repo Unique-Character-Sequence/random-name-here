@@ -56,7 +56,6 @@ export const sendMsg_actionCreator = (text) => {
 }
 
 export const updateMsgInputArea_actionCreator = (text) => {
-    debugger
     return {
         type: UPDATE_MSG_INPUT_AREA,
         msgInputUpdatedText: text

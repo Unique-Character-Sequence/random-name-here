@@ -9,10 +9,9 @@ import {
     setCurrentPage,
     setUsersCount
 } from "../../../.store/reducers/ContactsReducer";
-import * as axios from "axios";
 import * as react from "react";
 import Preloader from "../../../assets/Preloader"
-import {withRouter} from "react-router-dom";
+import {UsersDA} from "../../../DAL/DataAccess";
 
 
 class ContainerContacts__contactList extends react.Component {
@@ -20,12 +19,12 @@ class ContainerContacts__contactList extends react.Component {
         this.props.isFetchingSwitch(true)
         // (Делает определенные действия сразу после монтирования)
         // Запрашиваем с сервера определенное количество элементов, а затем отправляем их в стейт
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+        UsersDA.getUsers(this.props.currentPage, this.props.pageSize)
             .then(
                 response => {
                     this.props.isFetchingSwitch(false) // Данные УЖЕ пришли, а значит можно скрыть
-                    this.props.setUsersCount(response.data.totalCount)
-                    this.props.addUserToState(response.data)
+                    this.props.setUsersCount(response.totalCount)
+                    this.props.addUserToState(response)
                 })
     }
 
@@ -35,12 +34,12 @@ class ContainerContacts__contactList extends react.Component {
         // а также запрашивает с сервера и отправляет в стейт информацию со страницы под номером, на который нажали.
         this.props.setCurrentPage(pageNumber)
         // внизу не {this.props.currentPage}, а {pageNumber}, потому что инструкции сначала отработают с имеющимися пропсами
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
+        UsersDA.getUsers(pageNumber, this.props.pageSize)
             .then(
                 response => {
-                    console.log(response.data)
+                    console.log(response)
                     this.props.isFetchingSwitch(false)
-                    this.props.addUserToState(response.data)
+                    this.props.addUserToState(response)
                 })
     }
 
