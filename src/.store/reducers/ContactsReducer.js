@@ -5,6 +5,8 @@ const ADD_USER_TO_STATE = 'ADD_USER_TO_STATE'
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
 const SET_USERS_COUNT = 'SET_USERS_COUNT'
 const IS_FETCHING_SWITCH = 'IS_FETCHING_SWITCH'
+const IS_REQUEST_IN_PROGRESS = 'IS_REQUEST_IN_PROGRESS'
+
 
 let InitialState = {
     UsersArray: [],
@@ -13,7 +15,8 @@ let InitialState = {
     totalUsersCount: 0,
     // Свойство state. Нынешняя открытая страница.
     currentPage: 1, // Потому это страница, которая подсвечивается в UI
-    isFetching: false // Происходит ли загрузка
+    isFetching: false, // Происходит ли загрузка
+    requestsInProgress: []
 }
 
 const ContactsReducer = (state = InitialState, action) => {
@@ -56,6 +59,12 @@ const ContactsReducer = (state = InitialState, action) => {
         case IS_FETCHING_SWITCH:
             return {
                 ...state, isFetching: action.isFetching
+            }
+        case IS_REQUEST_IN_PROGRESS:
+            return {
+                ...state, requestsInProgress: action.isFetching
+                    ? [...state.requestsInProgress, action.userId]
+                    : state.requestsInProgress.filter(id => id != action.userId) // filter вернёт массив без action.userId
             }
         default:
             return state
@@ -107,6 +116,14 @@ export const setCurrentPage = (currentPage) => {
 export const isFetchingSwitch = (isFetching) => {
     return {
         type: IS_FETCHING_SWITCH,
+        isFetching
+    }
+}
+
+export const isRequestInProgress = (isFetching, userId) => {
+    return {
+        type: IS_REQUEST_IN_PROGRESS,
+        userId,
         isFetching
     }
 }

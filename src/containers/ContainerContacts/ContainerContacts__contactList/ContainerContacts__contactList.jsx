@@ -5,7 +5,7 @@ import {
     addUserToState,
     chatContact,
     deleteContact,
-    isFetchingSwitch,
+    isFetchingSwitch, isRequestInProgress,
     setCurrentPage,
     setUsersCount
 } from "../../../.store/reducers/ContactsReducer";
@@ -47,18 +47,7 @@ class ContainerContacts__contactList extends react.Component {
         // Отрисовка функционального компонента.
         return <>
             {this.props.isFetching ? <Preloader/> : null}
-            <Contacts__contactList UsersArray={this.props.UsersArray}
-                                   onPageChange={this.onPageChange}
-                                   totalUsersCount={this.props.totalUsersCount}
-                                   pageSize={this.props.pageSize}
-                                   addContact={this.props.addContact}
-                                   deleteContact={this.props.deleteContact}
-                                   chatContact={this.props.chatContact}
-                                   addUserToState={this.props.addUserToState}
-                                   setCurrentPage={this.props.setCurrentPage}
-                                   setUsersCount={this.props.setUsersCount}
-                                   currentPage={this.props.currentPage}
-            />
+            <Contacts__contactList onPageChange={this.onPageChange} {...this.props}/>
         </>
     }
 }
@@ -72,7 +61,8 @@ let mapDispatchToProps = {
     addUserToState,
     setCurrentPage,
     setUsersCount,
-    isFetchingSwitch
+    isFetchingSwitch,
+    isRequestInProgress
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContainerContacts__contactList)

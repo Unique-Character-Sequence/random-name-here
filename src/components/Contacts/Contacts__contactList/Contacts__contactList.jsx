@@ -49,25 +49,31 @@ let Contacts__contactList = (props) => {
                 <button onClick={p.chatContact}>Chat</button>
                 {
                     p.followed
-                        ? <button onClick={() => {
-                            UsersDA.deleteContact(p.id)
-                                .then(
-                                    response => {
-                                        if (response.resultCode === 0) {
-                                            props.deleteContact(p.id)
-                                        }
-                                    })
-                        }}>У Вас в друзьях</button>
+                        ? <button disabled={props.requestsInProgress.some(element => element === p.id)} // Если в массиве есть хотя бы 1 элемент равный p.id
+                            onClick={() => {
+                                props.isRequestInProgress(true, p.id)
+                                UsersDA.deleteContact(p.id)
+                                    .then(
+                                        response => {
+                                            if (response.resultCode === 0) {
+                                                props.deleteContact(p.id)
+                                            }
+                                            props.isRequestInProgress(false, p.id)
+                                        })
+                            }}>У Вас в друзьях</button>
 
-                        : <button onClick={() => {
-                            UsersDA.addContact(p.id)
-                                .then(
-                                    response => {
-                                        if (response.resultCode === 0) {
-                                            props.addContact(p.id)
-                                        }
-                                    })
-                        }}>Добавить</button>
+                        : <button disabled={props.requestsInProgress.some(element => element === p.id)} // Если в массиве есть хотя бы 1 элемент равный p.id
+                                  onClick={() => {
+                                      props.isRequestInProgress(true, p.id)
+                                      UsersDA.addContact(p.id)
+                                          .then(
+                                              response => {
+                                                  if (response.resultCode === 0) {
+                                                      props.addContact(p.id)
+                                                  }
+                                                  props.isRequestInProgress(false, p.id)
+                                              })
+                                  }}>Добавить</button>
                 }
                 <br/>
                 <br/>
