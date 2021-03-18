@@ -1,3 +1,5 @@
+import {UsersDA} from "../../DAL/DataAccess";
+
 const CHAT_CONTACT = 'CHAT_CONTACT'
 const ADD_CONTACT = 'ADD_CONTACT'
 const DELETE_CONTACT = 'DELETE_CONTACT'
@@ -125,6 +127,48 @@ export const isRequestInProgress = (isFetching, userId) => {
         type: IS_REQUEST_IN_PROGRESS,
         userId,
         isFetching
+    }
+}
+
+export const getUsersThunk = (currentPage, pageSize) => {
+    // Запрашиваем с сервера определенное количество элементов, а затем отправляем их в стейт
+    return (dispatch) => {
+        dispatch(isFetchingSwitch(true))
+        UsersDA.getUsers(currentPage, pageSize)
+            .then(
+                response => {
+                    dispatch(isFetchingSwitch(false))
+                    dispatch(setUsersCount(response.totalCount))
+                    dispatch(addUserToState(response))
+                })
+    }
+}
+
+export const addContactThunk = (userId) => {
+    return (dispatch) => {
+        dispatch(isRequestInProgress(true, userId))
+        UsersDA.addContact(userId)
+            .then(
+                response => {
+                    if (response.resultCode === 0) {
+                        dispatch(addContact(userId))
+                    }
+                    dispatch(isRequestInProgress(false, userId))
+                })
+    }
+}
+
+export const deleteContactThunk = (userId) => {
+    return (dispatch) => {
+        dispatch(isRequestInProgress(true, userId))
+        UsersDA.deleteContact(userId)
+            .then(
+                response => {
+                    if (response.resultCode === 0) {
+                        dispatch(deleteContact(userId))
+                    }
+                    dispatch(isRequestInProgress(false, userId))
+                })
     }
 }
 

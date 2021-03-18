@@ -1,34 +1,26 @@
 import Profile__postList from "../../../components/Profile/Profile__postList/Profile__postList";
 import {
-    addPost, isFetchingSwitch,
-    updateAddPostArea, setProfileData
+    addPost,
+    updateAddPostArea,
+    getProfileDataThunk
 } from "../../../.store/reducers/ProfileReducer";
 import {connect} from "react-redux";
 import * as react from "react";
 import Preloader from "../../../assets/Preloader";
 import {withRouter} from "react-router-dom";
-import {UsersDA} from "../../../DAL/DataAccess";
 
 class ContainerProfile__postList extends react.Component {
     componentDidMount() {
-        //debugger чтоб прочекать пропсы
-        this.props.isFetchingSwitch(true)
         let userID = this.props.match.params.userID
-        if (!userID){
-            // Очевидно, что вместо 6768 нужно будет брать параметры залогиненного юзера
-            userID = 15770;
+        if (!userID) {
+            userID = this.props.id
+            // Заглушка, если хедеру ещё не успел придти ответ. Нужен промис, наверное
+            if (!this.props.id) {
+                userID = 6768
+            }
+
         }
-        UsersDA.getProfileData(userID)
-            .then(
-                response => {
-                    this.props.isFetchingSwitch(false) // Данные УЖЕ пришли, а значит можно скрыть preloader
-                    this.props.setProfileData(
-                        //response.data.fullName,
-                        response.fullName,
-                        response.photos.large,
-                        response.lookingForAJobDescription
-                    )
-                })
+        this.props.getProfileDataThunk(userID)
     }
 
     render() {
@@ -45,13 +37,14 @@ class ContainerProfile__postList extends react.Component {
 
 let mapStateToProps = (state) => ({
     ...state.ProfileComponentStates,
-    login: state.AuthReducer.login})
+    login: state.AuthReducer.login,
+    id: state.AuthReducer.id
+})
 
 let mapDispatchToProps = {
     addPost,
     updateAddPostArea,
-    isFetchingSwitch,
-    setProfileData
+    getProfileDataThunk
 }
 
 

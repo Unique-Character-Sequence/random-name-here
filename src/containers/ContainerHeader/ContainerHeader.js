@@ -1,23 +1,12 @@
 import * as react from "react";
-import * as axios from "axios";
 import Header from "../../components/Header/Header";
 import {connect} from "react-redux";
-import {setAuthData} from "../../.store/reducers/AuthReducer";
-import {UsersDA} from "../../DAL/DataAccess";
+import {getMyDataThunk} from "../../.store/reducers/AuthReducer";
 
 
 class ContainerHeader extends react.Component {
     componentDidMount() {
-        UsersDA.getMyData()
-            .then(
-                //только с withCredentials делается кроссдоменный запрос. Негодую.
-                response => {
-                    // Чек на ошибку в data.resultCode
-                    if (response.resultCode === 0) {
-                        this.props.setAuthData(response.data)
-                    }
-                },
-            )
+        this.props.getMyDataThunk()
     }
 
     render() {
@@ -30,8 +19,7 @@ let mapStateToProps = (state) => ({
 })
 
 let mapDispatchToProps = {
-    setAuthData
-
+    getMyDataThunk
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContainerHeader);
