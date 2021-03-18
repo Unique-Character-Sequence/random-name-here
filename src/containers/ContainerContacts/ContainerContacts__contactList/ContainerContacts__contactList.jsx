@@ -20,6 +20,7 @@ class ContainerContacts__contactList extends react.Component {
 
     onPageChange = (pageNumber) => {
         // Вызывается при нажатии пользователя на кнопку смены страницы. Отправляет в стейт цифру на которую нажали,
+        this.props.setCurrentPage(pageNumber)
         // а также запрашивает с сервера и отправляет в стейт информацию со страницы под номером, на который нажали.
         // внизу не {this.props.currentPage}, а {pageNumber}, потому что инструкции сначала отработают с имеющимися пропсами
         this.props.getUsersThunk(pageNumber, this.props.pageSize)
