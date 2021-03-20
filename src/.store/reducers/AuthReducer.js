@@ -27,16 +27,14 @@ export const setAuthData = (authData) => {
     }
 }
 
-export const getMyDataThunk = () => {
-    return (dispatch) => {
-        UsersDA.getMyData()
-            .then(
-                response => {
-                    if (response.resultCode === 0) {
-                        dispatch(setAuthData(response.data))
-                    }
-                })
-    }
+export const getMyDataThunk = () => (dispatch) => {
+    UsersDA.getMyData()
+        .then(
+            response => {
+                if (response.resultCode === 0) {
+                    dispatch(setAuthData(response.data))
+                }
+            })
 }
 
 export default AuthReducer

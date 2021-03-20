@@ -1,6 +1,4 @@
 import {UsersDA} from "../../DAL/DataAccess";
-import {getMyDataThunk} from "./AuthReducer";
-
 const UPDATE_ADD_POST_AREA = 'UPDATE_ADD_POST_AREA'
 const ADD_POST = 'ADD_POST'
 const IS_FETCHING_SWITCH = 'IS_FETCHING_SWITCH'
@@ -79,20 +77,19 @@ export const setProfileData = (fullName, user_img, status) => {
     }
 }
 
-export const getProfileDataThunk = (id) => {
-    return (dispatch) => {
-        isFetchingSwitch(true)
-        UsersDA.getProfileData(id)
-            .then(
-                response => {
-                    isFetchingSwitch(false) // Данные УЖЕ пришли, а значит можно скрыть preloader
-                    dispatch(setProfileData(
-                        response.fullName,
-                        response.photos.large,
-                        response.lookingForAJobDescription
-                    ))
-                })
-    }
+export const getProfileDataThunk = (id) => (dispatch) => {
+    isFetchingSwitch(true)
+    UsersDA.getProfileData(id)
+        .then(
+            response => {
+                isFetchingSwitch(false) // Данные УЖЕ пришли, а значит можно скрыть preloader
+                dispatch(setProfileData(
+                    response.fullName,
+                    response.photos.large,
+                    response.lookingForAJobDescription
+                ))
+            })
 }
+
 
 export default ProfileReducer

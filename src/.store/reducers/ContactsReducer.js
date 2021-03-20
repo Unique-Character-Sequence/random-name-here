@@ -130,46 +130,42 @@ export const isRequestInProgress = (isFetching, userId) => {
     }
 }
 
-export const getUsersThunk = (currentPage, pageSize) => {
+export const getUsersThunk = (currentPage, pageSize) => (dispatch) => {
     // Запрашиваем с сервера определенное количество элементов, а затем отправляем их в стейт
-    return (dispatch) => {
-        dispatch(isFetchingSwitch(true))
-        UsersDA.getUsers(currentPage, pageSize)
-            .then(
-                response => {
-                    dispatch(isFetchingSwitch(false))
-                    dispatch(setUsersCount(response.totalCount))
-                    dispatch(addUserToState(response))
-                })
-    }
+    dispatch(isFetchingSwitch(true))
+    UsersDA.getUsers(currentPage, pageSize)
+        .then(
+            response => {
+                dispatch(isFetchingSwitch(false))
+                dispatch(setUsersCount(response.totalCount))
+                dispatch(addUserToState(response))
+            })
 }
 
-export const addContactThunk = (userId) => {
-    return (dispatch) => {
-        dispatch(isRequestInProgress(true, userId))
-        UsersDA.addContact(userId)
-            .then(
-                response => {
-                    if (response.resultCode === 0) {
-                        dispatch(addContact(userId))
-                    }
-                    dispatch(isRequestInProgress(false, userId))
-                })
-    }
+
+export const addContactThunk = (userId) => (dispatch) => {
+    dispatch(isRequestInProgress(true, userId))
+    UsersDA.addContact(userId)
+        .then(
+            response => {
+                if (response.resultCode === 0) {
+                    dispatch(addContact(userId))
+                }
+                dispatch(isRequestInProgress(false, userId))
+            })
 }
 
-export const deleteContactThunk = (userId) => {
-    return (dispatch) => {
-        dispatch(isRequestInProgress(true, userId))
-        UsersDA.deleteContact(userId)
-            .then(
-                response => {
-                    if (response.resultCode === 0) {
-                        dispatch(deleteContact(userId))
-                    }
-                    dispatch(isRequestInProgress(false, userId))
-                })
-    }
+
+export const deleteContactThunk = (userId) => (dispatch) => {
+    dispatch(isRequestInProgress(true, userId))
+    UsersDA.deleteContact(userId)
+        .then(
+            response => {
+                if (response.resultCode === 0) {
+                    dispatch(deleteContact(userId))
+                }
+                dispatch(isRequestInProgress(false, userId))
+            })
 }
 
 
