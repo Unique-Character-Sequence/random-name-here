@@ -10,6 +10,7 @@ import {
 } from "../../../.store/reducers/ContactsReducer";
 import * as react from "react";
 import Preloader from "../../../assets/Preloader"
+import {withSignInRedirect} from "../../../hocs/withSignInRedirect";
 
 
 class ContainerContacts__contactList extends react.Component {
@@ -46,4 +47,6 @@ let mapDispatchToProps = {
     deleteContactThunk,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ContainerContacts__contactList)
+
+
+export default withSignInRedirect(connect(mapStateToProps, mapDispatchToProps)(ContainerContacts__contactList))

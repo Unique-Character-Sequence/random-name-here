@@ -1,5 +1,6 @@
 import Chats__chatList from "../../../components/Chats/Chats__chatList/Chats__chatList";
 import {connect} from "react-redux";
+import {withSignInRedirect} from "../../../hocs/withSignInRedirect";
 
 let mapStateToProps = (state) => {
     return {
@@ -7,6 +8,6 @@ let mapStateToProps = (state) => {
     }
 }
 
-const ContainerChats__chatList = connect(mapStateToProps)(Chats__chatList)
+const ContainerChats__chatList = withSignInRedirect(connect(mapStateToProps)(Chats__chatList))
 
 export default ContainerChats__chatList

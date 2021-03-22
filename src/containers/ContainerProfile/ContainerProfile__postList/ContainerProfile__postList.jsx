@@ -7,24 +7,24 @@ import {
 import {connect} from "react-redux";
 import * as react from "react";
 import Preloader from "../../../assets/Preloader";
-import {withRouter} from "react-router-dom";
+import {Redirect, withRouter} from "react-router-dom";
+import {withSignInRedirect} from "../../../hocs/withSignInRedirect";
 
 class ContainerProfile__postList extends react.Component {
     componentDidMount() {
         let userID = this.props.match.params.userID
+
         if (!userID) {
             userID = this.props.id
             // Заглушка, если хедеру ещё не успел придти ответ. Нужен промис, наверное
             if (!this.props.id) {
                 userID = 6768
             }
-
         }
         this.props.getProfileDataThunk(userID)
     }
 
     render() {
-        // Такая форма записи означает, что мы передаём все сущности внутри props, как одноимённые атрибуты.
         return <>
             {this.props.isFetching
                 ? <Preloader/>
@@ -48,6 +48,6 @@ let mapDispatchToProps = {
 }
 
 
-let WithURIDataContainerComponent = withRouter(ContainerProfile__postList)
+let WithWrappersContainerComponent = withSignInRedirect(withRouter(ContainerProfile__postList))
 
-export default connect(mapStateToProps, mapDispatchToProps)(WithURIDataContainerComponent)
+export default connect(mapStateToProps, mapDispatchToProps)(WithWrappersContainerComponent)

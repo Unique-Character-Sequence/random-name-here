@@ -5,7 +5,8 @@ const SET_AUTH_DATA = 'SET_AUTH_DATA'
 let InitialState = {
     login: null,
     id: null,
-    email: null
+    email: null,
+    isLoggedIn: false
 }
 
 const AuthReducer = (state = InitialState, action) => {
@@ -13,12 +14,14 @@ const AuthReducer = (state = InitialState, action) => {
         case SET_AUTH_DATA:
             return {
                 ...state,
-                ...action.authData
+                ...action.authData,
+                isLoggedIn: true
             }
         default:
             return state
     }
 }
+
 
 export const setAuthData = (authData) => {
     return {
