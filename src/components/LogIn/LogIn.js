@@ -1,5 +1,3 @@
-import {connect} from "react-redux";
-
 const LogIn = (props) => {
     return <div>
         <h1>
@@ -8,8 +6,4 @@ const LogIn = (props) => {
     </div>
 }
 
-let mapStateToProps = (state) => ({
-    isLoggedIn: state.AuthReducer.isLoggedIn
-})
-
-export default connect(mapStateToProps)(LogIn)
+export default LogIn

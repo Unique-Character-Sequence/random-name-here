@@ -2,7 +2,7 @@ import './App.css'
 import Sidebar from '../components/Sidebar/Sidebar'
 import ContainerHeader from '../containers/ContainerHeader/ContainerHeader'
 
-import Login from "../components/LogIn/LogIn";
+
 import Profile from '../components/Profile/Profile'
 import Feed from '../components/Feed/Feed'
 import Contacts from "../components/Contacts/Contacts";
@@ -11,6 +11,7 @@ import Music from '../components/Music/Music'
 import Settings from '../components/Settings/Settings'
 
 import {BrowserRouter, Route} from "react-router-dom";
+import ContainerLogIn from "./ContainerLogIn/ContainerLogIn";
 
 
 const App = () => {
@@ -23,7 +24,7 @@ const App = () => {
                     <Route path="/profile/:userID?"
                            render={() => <Profile/>}/>
                     <Route path="/login"
-                           render={() => <Login/>}/>
+                           render={() => <ContainerLogIn/>}/>
                     <Route path="/chats"
                            render={() => <Chats/>}/>
                     <Route path="/feed"
