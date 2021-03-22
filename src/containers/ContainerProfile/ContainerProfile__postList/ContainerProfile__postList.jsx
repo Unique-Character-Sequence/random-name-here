@@ -9,6 +9,7 @@ import * as react from "react";
 import Preloader from "../../../assets/Preloader";
 import {Redirect, withRouter} from "react-router-dom";
 import {withSignInRedirect} from "../../../hocs/withSignInRedirect";
+import {compose} from "redux";
 
 class ContainerProfile__postList extends react.Component {
     componentDidMount() {
@@ -47,7 +48,8 @@ let mapDispatchToProps = {
     getProfileDataThunk
 }
 
-
-let WithWrappersContainerComponent = withSignInRedirect(withRouter(ContainerProfile__postList))
-
-export default connect(mapStateToProps, mapDispatchToProps)(WithWrappersContainerComponent)
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    withRouter,
+    withSignInRedirect
+)(ContainerProfile__postList)
