@@ -2,7 +2,7 @@ import './App.css'
 import Sidebar from '../components/Sidebar/Sidebar'
 import ContainerHeader from '../containers/ContainerHeader/ContainerHeader'
 
-import Login from "../components/Login/Login";
+import Login from "../components/LogIn/LogIn";
 import Profile from '../components/Profile/Profile'
 import Feed from '../components/Feed/Feed'
 import Contacts from "../components/Contacts/Contacts";
