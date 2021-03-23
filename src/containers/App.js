@@ -12,6 +12,7 @@ import Settings from '../components/Settings/Settings'
 
 import {BrowserRouter, Route} from "react-router-dom";
 import ContainerLogIn from "./ContainerLogIn/ContainerLogIn";
+import ContainerProfile from "./ContainerProfile/ContainerProfile";
 
 
 const App = () => {
@@ -22,7 +23,7 @@ const App = () => {
                 <Sidebar/>
                 <div className='app-wrapper-content'>
                     <Route path="/profile/:userID?"
-                           render={() => <Profile/>}/>
+                           render={() => <ContainerProfile/>}/>
                     <Route path="/login"
                            render={() => <ContainerLogIn/>}/>
                     <Route path="/chats"

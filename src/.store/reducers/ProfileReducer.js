@@ -12,7 +12,7 @@ let InitialState = {
         {id: 3, user_name: 'Georg333o Biba', post_content: '213123123', likesAmount: 5911},
         {id: 4, user_name: 'Georg1333o Biba', post_content: '123123', likesAmount: 123911}
     ],
-    PostAreaData: '',
+    postAreaData: '',
     // Происходит ли загрузка
     isFetching: false
 }
@@ -25,15 +25,15 @@ const ProfileReducer = (state = InitialState, action) => {
                 PostsArray: [...state.PostsArray, {
                     id: 5,
                     user_name: 'Name_here Surname_here',
-                    post_content: state.PostAreaData,
+                    post_content: state.postAreaData,
                     likesAmount: 0
                 }],
-                PostAreaData: ''
+                postAreaData: ''
             }
         case UPDATE_ADD_POST_AREA:
             return {
                 ...state,
-                PostAreaData: action.PostAreaData
+                postAreaData: action.postAreaData
             }
         case IS_FETCHING_SWITCH:
             return {
@@ -54,10 +54,10 @@ export const addPost = () => {
     }
 }
 
-export const updateAddPostArea = (PostAreaData) => {
+export const updateAddPostArea = (postAreaData) => {
     return {
         type: UPDATE_ADD_POST_AREA,
-        PostAreaData
+        postAreaData
     }
 }
 

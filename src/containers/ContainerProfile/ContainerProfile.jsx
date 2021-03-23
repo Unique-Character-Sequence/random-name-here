@@ -1,17 +1,17 @@
-import Profile__postList from "../../../components/Profile/Profile__postList/Profile__postList";
 import {
     addPost,
     updateAddPostArea,
     getProfileDataThunk
-} from "../../../.store/reducers/ProfileReducer";
+} from "../../.store/reducers/ProfileReducer";
 import {connect} from "react-redux";
 import * as react from "react";
-import Preloader from "../../../assets/Preloader";
+import Preloader from "../../assets/Preloader";
 import {Redirect, withRouter} from "react-router-dom";
-import {withSignInRedirect} from "../../../hocs/withSignInRedirect";
+import {withSignInRedirect} from "../../hocs/withSignInRedirect";
 import {compose} from "redux";
+import Profile from "../../components/Profile/Profile";
 
-class ContainerProfile__postList extends react.Component {
+class ContainerProfile extends react.Component {
     componentDidMount() {
         let userID = this.props.match.params.userID
 
@@ -29,7 +29,7 @@ class ContainerProfile__postList extends react.Component {
         return <>
             {this.props.isFetching
                 ? <Preloader/>
-                : <Profile__postList {...this.props}/>
+                : <Profile {...this.props}/>
             }
         </>
     }
@@ -52,4 +52,4 @@ export default compose(
     connect(mapStateToProps, mapDispatchToProps),
     withRouter,
     withSignInRedirect
-)(ContainerProfile__postList)
+)(ContainerProfile)
