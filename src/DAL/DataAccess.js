@@ -22,6 +22,20 @@ export const UsersDA = {
         return instance.post(`follow/${id}`)
             .then(response => response.data)
     },
+    getMyData() {
+        console.warn('use ProfileDA.getMyData instead')
+        return ProfileDA.getMyData()
+    },
+}
+
+export const ProfileDA = {
+    getProfileStatus(userId) {
+        return instance.get(`profile/status/${userId}`)
+    },
+    updateProfileStatus(status) {
+        return instance.put(`profile/status`, {status: status}) // {status: status} -> {status} | check if it could work
+            .then(response => response.data)
+    },
     getProfileData(id) {
         return instance.get(`profile/${id}`)
             .then(response => response.data)
@@ -29,5 +43,6 @@ export const UsersDA = {
     getMyData() {
         return instance.get(`auth/me`)
             .then(response => response.data)
-    }
+    },
+
 }

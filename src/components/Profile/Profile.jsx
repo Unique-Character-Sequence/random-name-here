@@ -8,7 +8,8 @@ const Profile = (props) => {
     return <div className={classes.general}>
         <Profile__menu_topInfo fullName={props.fullName}
                                user_img={props.user_img}
-                               status={props.status}/>
+                               status={props.status}
+                               updateProfileStatusThunk={props.updateProfileStatusThunk}/>
         {/*<Profile__gallery/>*/}
         <Profile__postList PostsArray={props.PostsArray}
                                     postAreaData={props.postAreaData}

@@ -1,8 +1,10 @@
-import {UsersDA} from "../../DAL/DataAccess";
+import {ProfileDA, UsersDA} from "../../DAL/DataAccess";
+
 const UPDATE_ADD_POST_AREA = 'UPDATE_ADD_POST_AREA'
 const ADD_POST = 'ADD_POST'
 const IS_FETCHING_SWITCH = 'IS_FETCHING_SWITCH'
 const SET_PROFILE_DATA = 'SET_PROFILE_DATA'
+const SET_PROFILE_STATUS = 'SET_PROFILE_STATUS'
 
 let InitialState = {
     PostsArray: [
@@ -14,7 +16,9 @@ let InitialState = {
     ],
     postAreaData: '',
     // Происходит ли загрузка
-    isFetching: false
+    isFetching: false,
+    status: '',
+    lookingForAJobDescription: ''
 }
 
 const ProfileReducer = (state = InitialState, action) => {
@@ -41,7 +45,11 @@ const ProfileReducer = (state = InitialState, action) => {
             }
         case SET_PROFILE_DATA:
             return {
-                ...state, fullName: action.fullName, status: action.status, user_img: action.user_img
+                ...state, fullName: action.fullName, lookingForAJobDescription: action.lookingForAJobDescription, user_img: action.user_img
+            }
+        case SET_PROFILE_STATUS:
+            return {
+                ...state, status: action.status
             }
         default:
             return state
@@ -68,18 +76,25 @@ export const isFetchingSwitch = (isFetching) => {
     }
 }
 
-export const setProfileData = (fullName, user_img, status) => {
+export const setProfileData = (fullName, user_img, lookingForAJobDescription) => {
     return {
         type: SET_PROFILE_DATA,
         fullName,
         user_img,
+        lookingForAJobDescription
+    }
+}
+
+export const setProfileStatus = (status) => {
+    return {
+        type: SET_PROFILE_STATUS,
         status
     }
 }
 
 export const getProfileDataThunk = (id) => (dispatch) => {
     isFetchingSwitch(true)
-    UsersDA.getProfileData(id)
+    ProfileDA.getProfileData(id)
         .then(
             response => {
                 isFetchingSwitch(false) // Данные УЖЕ пришли, а значит можно скрыть preloader
@@ -88,6 +103,28 @@ export const getProfileDataThunk = (id) => (dispatch) => {
                     response.photos.large,
                     response.lookingForAJobDescription
                 ))
+            })
+}
+
+export const getProfileStatusThunk = (id) => (dispatch) => {
+    ProfileDA.getProfileStatus(id)
+        .then(
+            response => {
+                dispatch(setProfileStatus(
+                    response.data
+                ))
+            })
+}
+
+export const updateProfileStatusThunk = (status) => (dispatch) => {
+    ProfileDA.updateProfileStatus(status)
+        .then(
+            response => {
+                if (response.resultCode === 0) {
+                    dispatch(setProfileStatus(
+                        status
+                    ))
+                }
             })
 }
 

@@ -1,7 +1,7 @@
 import {
     addPost,
     updateAddPostArea,
-    getProfileDataThunk
+    getProfileDataThunk, getProfileStatusThunk, updateProfileStatusThunk
 } from "../../.store/reducers/ProfileReducer";
 import {connect} from "react-redux";
 import * as react from "react";
@@ -23,6 +23,7 @@ class ContainerProfile extends react.Component {
             }
         }
         this.props.getProfileDataThunk(userID)
+        this.props.getProfileStatusThunk(userID)
     }
 
     render() {
@@ -45,7 +46,9 @@ let mapStateToProps = (state) => ({
 let mapDispatchToProps = {
     addPost,
     updateAddPostArea,
-    getProfileDataThunk
+    getProfileDataThunk,
+    getProfileStatusThunk,
+    updateProfileStatusThunk
 }
 
 export default compose(
