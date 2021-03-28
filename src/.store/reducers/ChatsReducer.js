@@ -34,32 +34,21 @@ const ChatsReducer = (state = InitialState, action) => {
                 User1_User2_Chat: [...state.User1_User2_Chat, { // Создаём копию пред. диалога + новое сообщение
                     id: 999,
                     user_name: 'User1',
-                    msg_content: state.MsgAreaData
+                    msg_content: action.msg_content
                 }],
                 MsgAreaData: "" // Создаём MsgAreaData со значением из action
-            }
-        case UPDATE_MSG_INPUT_AREA:
-            return {
-                ...state,
-                MsgAreaData: action.msgInputUpdatedText // Создаём MsgAreaData со значением из action
             }
         default:
             return state
     }
 }
 
-export const sendMsg_actionCreator = (text) => {
+export const sendMsg = (msg_content) => {
     return {
         type: SEND_MSG,
-        msg_content: text
+        msg_content
     }
 }
 
-export const updateMsgInputArea_actionCreator = (text) => {
-    return {
-        type: UPDATE_MSG_INPUT_AREA,
-        msgInputUpdatedText: text
-    }
-}
 
 export default ChatsReducer

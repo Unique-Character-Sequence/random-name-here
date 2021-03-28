@@ -8,15 +8,14 @@ const LogIn = (props) => {
             <h1>
                 {props.isLoggedIn ? 'Logged in' : 'Not logged in'}
             </h1>
-            {props.isLoggedIn? '': <LogInForm onSubmitFunc={props.onSubmit}/>}
-
+            {props.isLoggedIn? '': <LogInForm onSubmit={props.onSubmit}/>}
         </div>
     </Styles>
 }
 
-const LogInForm = (onSubmit) => {
+const LogInForm = (props) => {
     return <Form
-        onSubmit={onSubmit.onSubmitFunc}
+        onSubmit={props.onSubmit}
         initialValues={{email: null, password: null, remember_me: false}}
         render={({handleSubmit, submitting, pristine, values}) => (
             <form onSubmit={handleSubmit}>
