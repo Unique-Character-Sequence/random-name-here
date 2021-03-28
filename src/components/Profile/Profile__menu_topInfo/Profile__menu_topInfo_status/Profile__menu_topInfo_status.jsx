@@ -25,6 +25,15 @@ class Profile__menu_topInfo_status extends react.Component {
 
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.status !== this.props.status) {
+            this.setState({
+                status: this.props.status
+            })
+        }
+        console.log(prevProps);
+    }
+
     render() {
         return <div className={classes.text}>
             {!this.state.status_editMode && <div>

@@ -10,6 +10,7 @@ class ContainerHeader extends react.Component {
     }
 
     render() {
+        //this.props.getMyDataThunk()
         return <Header {...this.props}/>
     }
 }

@@ -21,11 +21,7 @@ export const UsersDA = {
     addContact(id) {
         return instance.post(`follow/${id}`)
             .then(response => response.data)
-    },
-    getMyData() {
-        console.warn('use ProfileDA.getMyData instead')
-        return ProfileDA.getMyData()
-    },
+    }
 }
 
 export const ProfileDA = {
@@ -41,8 +37,14 @@ export const ProfileDA = {
             .then(response => response.data)
     },
     getMyData() {
+        // Am I authorized. Returns email, id, login if authorized.
         return instance.get(`auth/me`)
             .then(response => response.data)
     },
+    sendAuthRequest(email, password, remember_me) {
+        // Send auth request
+        return instance.post(`auth/login`, {email, password, rememberMe: remember_me})
+            .then(response => response.data)
+    }
 
 }

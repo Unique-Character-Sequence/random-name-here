@@ -17,8 +17,7 @@ let InitialState = {
     postAreaData: '',
     // Происходит ли загрузка
     isFetching: false,
-    status: '',
-    lookingForAJobDescription: ''
+    status: ''
 }
 
 const ProfileReducer = (state = InitialState, action) => {
@@ -45,7 +44,7 @@ const ProfileReducer = (state = InitialState, action) => {
             }
         case SET_PROFILE_DATA:
             return {
-                ...state, fullName: action.fullName, lookingForAJobDescription: action.lookingForAJobDescription, user_img: action.user_img
+                ...state, fullName: action.fullName, status: action.status, user_img: action.user_img
             }
         case SET_PROFILE_STATUS:
             return {
@@ -76,12 +75,12 @@ export const isFetchingSwitch = (isFetching) => {
     }
 }
 
-export const setProfileData = (fullName, user_img, lookingForAJobDescription) => {
+export const setProfileData = (fullName, user_img, status) => {
     return {
         type: SET_PROFILE_DATA,
         fullName,
         user_img,
-        lookingForAJobDescription
+        status
     }
 }
 
@@ -101,7 +100,7 @@ export const getProfileDataThunk = (id) => (dispatch) => {
                 dispatch(setProfileData(
                     response.fullName,
                     response.photos.large,
-                    response.lookingForAJobDescription
+                    response.status
                 ))
             })
 }

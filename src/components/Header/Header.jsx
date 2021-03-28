@@ -10,7 +10,7 @@ const Header = (props) => {
             показать.
             */}
 
-            <NavLink to={'/login'}>{props.login? props.login : 'Sign In'}</NavLink>
+            <NavLink to={'/login'}>{props.login ? props.login : 'Sign In'}</NavLink>
         </div>
 
     </header>

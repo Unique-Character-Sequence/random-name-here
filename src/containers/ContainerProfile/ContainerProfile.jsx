@@ -18,9 +18,9 @@ class ContainerProfile extends react.Component {
         if (!userID) {
             userID = this.props.id
             // Заглушка, если хедеру ещё не успел придти ответ. Нужен промис, наверное
-            if (!this.props.id) {
-                userID = 6768
-            }
+            // if (!this.props.id) {
+            //     userID = 6768
+            // }
         }
         this.props.getProfileDataThunk(userID)
         this.props.getProfileStatusThunk(userID)
