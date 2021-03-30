@@ -32,7 +32,7 @@ const MessageInputForm = (props) => {
                 </div>
                 <div>
                     <button type="submit" disabled={submitting || pristine}>
-                        Submit
+                        Send
                     </button>
                 </div>
                 <pre>{JSON.stringify(values, 0, 2)}</pre>

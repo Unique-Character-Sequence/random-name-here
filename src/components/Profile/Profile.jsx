@@ -14,7 +14,8 @@ const Profile = (props) => {
         <Profile__postList PostsArray={props.PostsArray}
                                     postAreaData={props.postAreaData}
                                     addPost={props.addPost}
-                                    updateAddPostArea={props.updateAddPostArea}/>
+                                    onSubmit={props.onSubmit}
+        />
     </div>
 }
 

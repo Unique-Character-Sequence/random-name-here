@@ -1,6 +1,5 @@
 import {
     addPost,
-    updateAddPostArea,
     getProfileDataThunk, getProfileStatusThunk, updateProfileStatusThunk
 } from "../../.store/reducers/ProfileReducer";
 import {connect} from "react-redux";
@@ -14,7 +13,6 @@ import Profile from "../../components/Profile/Profile";
 class ContainerProfile extends react.Component {
     componentDidMount() {
         let userID = this.props.match.params.userID
-
         if (!userID) {
             userID = this.props.id
             // Заглушка, если хедеру ещё не успел придти ответ. Нужен промис, наверное
@@ -26,11 +24,19 @@ class ContainerProfile extends react.Component {
         this.props.getProfileStatusThunk(userID)
     }
 
+    onSubmit = (props) => {
+        // new Promise(() => {
+        //     this.props.updateAddPostArea(props.post_content)
+        // }).then(this.props.addPost())
+        this.props.addPost(props.post_content)
+    }
+
     render() {
+        console.warn('we dont use addPost from props')
         return <>
             {this.props.isFetching
                 ? <Preloader/>
-                : <Profile {...this.props}/>
+                : <Profile {...this.props} onSubmit={this.onSubmit}/>
             }
         </>
     }
@@ -45,7 +51,6 @@ let mapStateToProps = (state) => ({
 
 let mapDispatchToProps = {
     addPost,
-    updateAddPostArea,
     getProfileDataThunk,
     getProfileStatusThunk,
     updateProfileStatusThunk

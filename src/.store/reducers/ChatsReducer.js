@@ -22,8 +22,7 @@ let InitialState = {
         {id: 2, user_name: 'Geor11g333o Biba', lastMessage: '213asas3'},
         {id: 3, user_name: 'Georg333o Biba', lastMessage: '2133ddsa'},
         {id: 4, user_name: 'Georg1333o Biba', lastMessage: '22asdqqq133'}
-    ],
-    MsgAreaData: ''
+    ]
 }
 
 const ChatsReducer = (state = InitialState, action) => {
@@ -35,8 +34,7 @@ const ChatsReducer = (state = InitialState, action) => {
                     id: 999,
                     user_name: 'User1',
                     msg_content: action.msg_content
-                }],
-                MsgAreaData: "" // Создаём MsgAreaData со значением из action
+                }]
             }
         default:
             return state
