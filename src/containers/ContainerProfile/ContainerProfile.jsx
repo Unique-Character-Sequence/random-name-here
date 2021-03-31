@@ -5,7 +5,7 @@ import {
 import {connect} from "react-redux";
 import * as react from "react";
 import Preloader from "../../assets/Preloader";
-import {Redirect, withRouter} from "react-router-dom";
+import {withRouter} from "react-router-dom";
 import {withSignInRedirect} from "../../hocs/withSignInRedirect";
 import {compose} from "redux";
 import Profile from "../../components/Profile/Profile";
@@ -15,19 +15,12 @@ class ContainerProfile extends react.Component {
         let userID = this.props.match.params.userID
         if (!userID) {
             userID = this.props.id
-            // Заглушка, если хедеру ещё не успел придти ответ. Нужен промис, наверное
-            // if (!this.props.id) {
-            //     userID = 6768
-            // }
         }
         this.props.getProfileDataThunk(userID)
         this.props.getProfileStatusThunk(userID)
     }
 
-    onSubmit = (props) => {
-        // new Promise(() => {
-        //     this.props.updateAddPostArea(props.post_content)
-        // }).then(this.props.addPost())
+    onSubmit = async props => {
         this.props.addPost(props.post_content)
     }
 

@@ -23,7 +23,7 @@ const MessageInputForm = (props) => {
         initialValues={{msg: null}}
         render={({handleSubmit, form, submitting, pristine, values}) => (
             <form onSubmit={event => {
-                handleSubmit(event).then(form.reset);
+                handleSubmit(event).then(form.reset)
             }}>
                 <div>
                     <Field name="msg" type="text" validate={required}>

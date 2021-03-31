@@ -1,7 +1,13 @@
 .general {
     padding: 10px;
 }
+
 .item {
     background-color: deeppink;
     color: lawngreen;
+}
+
+.error {
+    color: red;
+    font-weight: bold;
 }
