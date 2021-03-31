@@ -5,7 +5,7 @@ import {sendMsg} from "../../../.store/reducers/ChatsReducer";
 
 
 class ContainerChats__messages extends react.Component {
-    onSubmit = (values) => {
+    onSubmit = async values => {
         this.props.sendMsg(values.msg)
     }
 

@@ -2,6 +2,7 @@ import classes from './Chats__messages.module.css'
 import Chats__messages_message from "./Chats_messages_message/Chats__messages_message";
 import {Field, Form} from "react-final-form";
 
+const required = value => (value ? undefined : 'Required')
 
 const Chats__messages = (props) => {
     let messagesElements = props.User1_User2_Chat.map(m => <Chats__messages_message id={m.id}
@@ -20,15 +21,19 @@ const MessageInputForm = (props) => {
     return <Form
         onSubmit={props.onSubmit}
         initialValues={{msg: null}}
-        render={({handleSubmit, submitting, pristine, values}) => (
-            <form onSubmit={handleSubmit}>
+        render={({handleSubmit, form, submitting, pristine, values}) => (
+            <form onSubmit={event => {
+                handleSubmit(event).then(form.reset);
+            }}>
                 <div>
-                    <Field
-                        name="msg"
-                        component="textarea"
-                        type="text"
-                        placeholder="Input message"
-                    />
+                    <Field name="msg" type="text" validate={required}>
+                        {({input, meta}) => (
+                            <div className={classes.error}>
+                                <input {...input} type="text" placeholder="Input message"/>
+                                {meta.error && meta.touched && <span>{meta.error}</span>}
+                            </div>
+                        )}
+                    </Field>
                 </div>
                 <div>
                     <button type="submit" disabled={submitting || pristine}>

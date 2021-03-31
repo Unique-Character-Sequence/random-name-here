@@ -2,3 +2,8 @@
     background-color: lightblue;
     grid-area: msgs;
 }
+
+.error {
+    color: red;
+    font-weight: bold;
+}
