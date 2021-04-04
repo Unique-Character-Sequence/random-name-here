@@ -2,6 +2,7 @@ import {ProfileDA} from "../../DAL/DataAccess";
 
 const SET_AUTH_DATA = 'SET_AUTH_DATA'
 const SET_AUTHORIZED_TRUE = 'SET_AUTHORIZED_TRUE'
+const SET_AUTHORIZED_FALSE = 'SET_AUTHORIZED_FALSE'
 
 let InitialState = {
     login: null,
@@ -24,6 +25,13 @@ const AuthReducer = (state = InitialState, action) => {
                 isLoggedIn: true,
                 id: action.id
             }
+        case SET_AUTHORIZED_FALSE:
+            return {
+                ...state,
+                login: null,
+                isLoggedIn: false,
+                id: null
+            }
         default:
             return state
     }
@@ -44,11 +52,18 @@ export const setAuthorizedTrue = (id) => {
     }
 }
 
+export const setAuthorizedFalse = () => {
+    return {
+        type: SET_AUTHORIZED_FALSE
+    }
+}
+
 export const getMyDataThunk = () => (dispatch) => {
     ProfileDA.getMyData()
         .then(
             response => {
                 if (response.resultCode === 0) {
+                    //console.log(response.data)
                     dispatch(setAuthData(response.data))
                 }
             })
@@ -68,6 +83,17 @@ export const setAuthorizedThunk = (email, password, remember_me) => (dispatch) =
                 getMyDataThunk()
             }
         )
+}
+
+export const setDeauthorizedThunk = () => (dispatch) => {
+    ProfileDA.logout()
+        .then(
+            response => {
+                console.log(response)
+                if (response.resultCode === 0) {
+                    dispatch(setAuthorizedFalse())
+                }
+            })
 }
 
 export default AuthReducer

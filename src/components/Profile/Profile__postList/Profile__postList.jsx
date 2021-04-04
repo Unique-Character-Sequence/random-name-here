@@ -1,10 +1,7 @@
 import classes from './Profile__postList.module.css'
 import Profile__postList_post from "./Profile__postList_post/Profile__postList_post"
 import {Field, Form} from "react-final-form";
-
-const required = value => (value ? undefined : 'Required')
-const maxSymAmount = max => value =>
-    value.length <= max ? undefined : `Should be less than ${max} symbols`
+import {maxSymAmount, required} from "../../../utils/validators/validators";
 
 const Reminder = () => {
     return <h2>[error] input many characters in form below and post</h2>
@@ -43,7 +40,9 @@ const PostInputForm = (props) => {
                         {({input, meta}) => (
                             <div className={classes.error}>
                                 <textarea {...input} placeholder="What's new?"/>
-                                {meta.error && meta.touched && <span>{meta.error}</span>}
+                                <div>
+                                    {meta.error && meta.touched && <span>{meta.error}</span>}
+                                </div>
                             </div>
                         )}
                     </Field>

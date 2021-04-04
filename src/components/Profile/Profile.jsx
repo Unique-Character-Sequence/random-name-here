@@ -15,6 +15,8 @@ const Profile = (props) => {
                                     postAreaData={props.postAreaData}
                                     addPost={props.addPost}
                                     onSubmit={props.onSubmit}
+                                    required={props.required}
+                                    maxSymAmount={props.maxSymAmount}
         />
     </div>
 }

@@ -41,6 +41,11 @@ export const ProfileDA = {
         return instance.get(`auth/me`)
             .then(response => response.data)
     },
+    logout() {
+        // Send logout request
+        return instance.delete(`auth/login`)
+            .then(response => response.data)
+    },
     sendAuthRequest(email, password, remember_me) {
         // Send auth request
         return instance.post(`auth/login`, {email, password, rememberMe: remember_me})

@@ -39,7 +39,7 @@ class ContainerProfile extends react.Component {
 let mapStateToProps = (state) => ({
     ...state.ProfileComponentStates,
     login: state.AuthReducer.login,
-    id: state.AuthReducer.id
+    id: state.AuthReducer.id,
 })
 
 let mapDispatchToProps = {

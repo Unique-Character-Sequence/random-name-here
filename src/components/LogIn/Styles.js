@@ -33,6 +33,8 @@ const btnDefault = css`
 
 const btnPrimary = btn('#4f93ce', '#285f8f')
 
+
+
 export default styled.div`
   font-family: sans-serif;
 
@@ -82,15 +84,30 @@ export default styled.div`
         border-radius: 3px;
       }
       & > input[type='checkbox'] {
-        margin-top: 7px;
+        margin-top: 6px;
       }
       & > div {
-        margin-left: 16px;
+        display: flex;
+        flex: 1;
+        flex-flow: row nowrap;
+        line-height: 2em;
         & > label {
+          transition: 0.3s;
           display: block;
+          font-weight: bold;
+          color: red;
+          width: 110px;
           & > input {
             margin-right: 3px;
           }
+        }
+        & > input {
+          flex: 1;
+          padding: 3px 5px;
+          font-size: 1em;
+          margin-left: 15px;
+          border: 1px solid #ccc;
+          border-radius: 3px;
         }
       }
     }

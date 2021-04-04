@@ -1,7 +1,7 @@
 import * as react from "react";
 import Header from "../../components/Header/Header";
 import {connect} from "react-redux";
-import {getMyDataThunk} from "../../.store/reducers/AuthReducer";
+import {getMyDataThunk, setDeauthorizedThunk} from "../../.store/reducers/AuthReducer";
 
 
 class ContainerHeader extends react.Component {
@@ -9,18 +9,28 @@ class ContainerHeader extends react.Component {
         this.props.getMyDataThunk()
     }
 
+    rerender = () => {
+        // Не робит форсапдейт. Я чего-то недопонимаю.
+        this.props.setDeauthorizedThunk()
+        this.forceUpdate()
+    }
+
     render() {
         //this.props.getMyDataThunk()
-        return <Header {...this.props}/>
+        this.props.getMyDataThunk()
+        return <Header {...this.props} rerender={this.rerender}/>
     }
 }
 
 let mapStateToProps = (state) => ({
-    login: state.AuthReducer.login
+    login: state.AuthReducer.login,
+    isLoggedIn: state.AuthReducer.isLoggedIn
 })
 
 let mapDispatchToProps = {
-    getMyDataThunk
+    getMyDataThunk,
+    setDeauthorizedThunk
+
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContainerHeader);

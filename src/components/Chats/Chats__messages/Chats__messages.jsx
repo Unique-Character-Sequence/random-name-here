@@ -1,8 +1,8 @@
 import classes from './Chats__messages.module.css'
 import Chats__messages_message from "./Chats_messages_message/Chats__messages_message";
 import {Field, Form} from "react-final-form";
+import {required} from "../../../utils/validators/validators";
 
-const required = value => (value ? undefined : 'Required')
 
 const Chats__messages = (props) => {
     let messagesElements = props.User1_User2_Chat.map(m => <Chats__messages_message id={m.id}
@@ -13,7 +13,7 @@ const Chats__messages = (props) => {
     return <div className={classes.items}>
         {messagesElements}
         <br/>
-        <MessageInputForm onSubmit={props.onSubmit}/>
+        <MessageInputForm required={props.required} onSubmit={props.onSubmit}/>
     </div>
 }
 

@@ -1,6 +1,6 @@
 import {Field, Form} from "react-final-form";
 import Styles from "./Styles";
-
+import {required} from "../../utils/validators/validators";
 
 const LogIn = (props) => {
     return <Styles>
@@ -8,7 +8,7 @@ const LogIn = (props) => {
             <h1>
                 {props.isLoggedIn ? 'Logged in' : 'Not logged in'}
             </h1>
-            {props.isLoggedIn? '': <LogInForm onSubmit={props.onSubmit}/>}
+            {props.isLoggedIn ? '' : <LogInForm onSubmit={props.onSubmit}/>}
         </div>
     </Styles>
 }
@@ -25,8 +25,15 @@ const LogInForm = (props) => {
                         name="email"
                         component="input"
                         type="text"
-                        placeholder="Email"
-                    />
+                        validate={required}
+                    >
+                        {({input, meta}) => (
+                            <div>
+                                <input {...input} placeholder="Email"/>
+                                {meta.error && meta.touched && <label>{meta.error}</label>}
+                            </div>
+                        )}
+                    </Field>
                 </div>
                 <div>
                     <label>Password</label>
@@ -34,8 +41,15 @@ const LogInForm = (props) => {
                         name="password"
                         component="input"
                         type="password"
-                        placeholder="Password"
-                    />
+                        validate={required}
+                    >
+                        {({input, meta}) => (
+                            <div>
+                                <input {...input} placeholder="Password"/>
+                                {meta.error && meta.touched && <label>{meta.error}</label>}
+                            </div>
+                        )}
+                    </Field>
                 </div>
                 <div>
                     <label>Remember me</label>

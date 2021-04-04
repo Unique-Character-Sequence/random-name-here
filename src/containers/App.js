@@ -3,16 +3,15 @@ import Sidebar from '../components/Sidebar/Sidebar'
 import ContainerHeader from '../containers/ContainerHeader/ContainerHeader'
 
 
-import Profile from '../components/Profile/Profile'
 import Feed from '../components/Feed/Feed'
-import Contacts from "../components/Contacts/Contacts";
+import Contacts from "../components/Contacts/Contacts"
 import Chats from '../components/Chats/Chats'
 import Music from '../components/Music/Music'
 import Settings from '../components/Settings/Settings'
 
-import {BrowserRouter, Route} from "react-router-dom";
-import ContainerLogIn from "./ContainerLogIn/ContainerLogIn";
-import ContainerProfile from "./ContainerProfile/ContainerProfile";
+import {BrowserRouter, Route} from "react-router-dom"
+import ContainerLogIn from "./ContainerLogIn/ContainerLogIn"
+import ContainerProfile from "./ContainerProfile/ContainerProfile"
 
 
 const App = () => {
@@ -39,6 +38,6 @@ const App = () => {
                 </div>
             </div>
         </BrowserRouter>
-    );
+    )
 }
-export default App;
+export default App
