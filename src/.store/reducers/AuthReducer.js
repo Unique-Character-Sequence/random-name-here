@@ -10,7 +10,7 @@ let InitialState = {
     id: null,
     email: null,
     isLoggedIn: false,
-    authError: null
+    authError: 'qweqwe'
 }
 
 const AuthReducer = (state = InitialState, action) => {
@@ -33,6 +33,11 @@ const AuthReducer = (state = InitialState, action) => {
                 login: null,
                 isLoggedIn: false,
                 id: null
+            }
+        case SET_AUTH_ERROR:
+            return {
+                ...state,
+                authError: action.authError.join()
             }
         default:
             return state
@@ -86,8 +91,8 @@ export const sendAuthRequestThunk = (email, password, remember_me) => (dispatch)
                 if (response.resultCode === 0) {
                     dispatch(setAuthorizedTrue(response.data.userId))
                 } else {
-                    console.log(response)
-                    dispatch(setAuthError('qwewqeqwe'))
+                    console.log(response.messages)
+                    dispatch(setAuthError(response.messages))
                 }
             })
         .then(

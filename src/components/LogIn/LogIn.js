@@ -60,7 +60,7 @@ const LogInForm = (props) => {
                         Submit
                     </button>
                 </div>
-
+                Ошибка отображается, только если два раза нажать сабмит. В общем асинхрон буллщит:
                 {submitError && <div>{submitError}</div>}
 
                 <pre>{JSON.stringify(values, 0, 2)}</pre>
