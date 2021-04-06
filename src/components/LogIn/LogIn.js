@@ -17,7 +17,7 @@ const LogInForm = (props) => {
     return <Form
         onSubmit={props.onSubmit}
         initialValues={{email: null, password: null, remember_me: false}}
-        render={({handleSubmit, submitting, pristine, values}) => (
+        render={({submitError, handleSubmit, submitting, pristine, values}) => (
             <form onSubmit={handleSubmit}>
                 <div>
                     <label>Email</label>
@@ -60,6 +60,9 @@ const LogInForm = (props) => {
                         Submit
                     </button>
                 </div>
+
+                {submitError && <div>{submitError}</div>}
+
                 <pre>{JSON.stringify(values, 0, 2)}</pre>
             </form>
         )}

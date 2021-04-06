@@ -1,6 +1,7 @@
 import {ProfileDA} from "../../DAL/DataAccess";
 
 const SET_AUTH_DATA = 'SET_AUTH_DATA'
+const SET_AUTH_ERROR = 'SET_AUTH_ERROR'
 const SET_AUTHORIZED_TRUE = 'SET_AUTHORIZED_TRUE'
 const SET_AUTHORIZED_FALSE = 'SET_AUTHORIZED_FALSE'
 
@@ -8,7 +9,8 @@ let InitialState = {
     login: null,
     id: null,
     email: null,
-    isLoggedIn: false
+    isLoggedIn: false,
+    authError: null
 }
 
 const AuthReducer = (state = InitialState, action) => {
@@ -45,6 +47,13 @@ export const setAuthData = (authData) => {
     }
 }
 
+export const setAuthError = (authError) => {
+    return {
+        type: SET_AUTH_ERROR,
+        authError
+    }
+}
+
 export const setAuthorizedTrue = (id) => {
     return {
         type: SET_AUTHORIZED_TRUE,
@@ -69,17 +78,21 @@ export const getMyDataThunk = () => (dispatch) => {
             })
 }
 
-export const setAuthorizedThunk = (email, password, remember_me) => (dispatch) => {
+export const sendAuthRequestThunk = (email, password, remember_me) => (dispatch) => {
     ProfileDA.sendAuthRequest(email, password, remember_me)
         .then(
             response => {
-                console.log(response)
+                //console.log(response)
                 if (response.resultCode === 0) {
                     dispatch(setAuthorizedTrue(response.data.userId))
+                } else {
+                    console.log(response)
+                    dispatch(setAuthError('qwewqeqwe'))
                 }
             })
         .then(
             () => {
+                console.log('getMyDataThunk runs here')
                 getMyDataThunk()
             }
         )
