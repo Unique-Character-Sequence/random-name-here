@@ -27,13 +27,15 @@ const btn = (light, dark) => css`
   }
 `
 
-const btnDefault = css`
-  ${btn('#ffffff', '#d5d5d5')} color: #555;
-`
-
 const btnPrimary = btn('#4f93ce', '#285f8f')
 
-
+export const ErrorForm = styled.div`
+  border: 2px solid red;
+  text-align: center;
+  border-radius: 5px;
+  font-weight: inherit;
+  color: red;
+`
 
 export default styled.div`
   font-family: sans-serif;
@@ -121,9 +123,6 @@ export default styled.div`
       margin: 0 10px;
       &[type='submit'] {
         ${btnPrimary};
-      }
-      &[type='button'] {
-        ${btnDefault};
       }
     }
     pre {

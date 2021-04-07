@@ -1,5 +1,5 @@
 import {Field, Form} from "react-final-form";
-import Styles from "./Styles";
+import Styles, {ErrorForm} from "./Styles";
 import {required} from "../../utils/validators/validators";
 
 const LogIn = (props) => {
@@ -8,14 +8,14 @@ const LogIn = (props) => {
             <h1>
                 {props.isLoggedIn ? 'Logged in' : 'Not logged in'}
             </h1>
-            {props.isLoggedIn ? '' : <LogInForm onSubmit={props.onSubmit}/>}
+            {props.isLoggedIn ? '' : <LogInForm onSubmit={props.onSubmit} captchaUrl={props.captchaUrl}/> /* Не забывай сюда пропсы кидать*/}
         </div>
     </Styles>
 }
 
-const LogInForm = (props) => {
+const LogInForm = (propsFromAbove) => {
     return <Form
-        onSubmit={props.onSubmit}
+        onSubmit={propsFromAbove.onSubmit}
         initialValues={{email: null, password: null, remember_me: false}}
         render={({submitError, handleSubmit, submitting, pristine, values}) => (
             <form onSubmit={handleSubmit}>
@@ -60,10 +60,8 @@ const LogInForm = (props) => {
                         Submit
                     </button>
                 </div>
-                Ошибка отображается, только если два раза нажать сабмит. В общем асинхрон буллщит:
-                {submitError && <div>{submitError}</div>}
-
-                <pre>{JSON.stringify(values, 0, 2)}</pre>
+                {submitError && <ErrorForm>{submitError}</ErrorForm>}
+                <img src={propsFromAbove.captchaUrl} alt=""/>
             </form>
         )}
     />

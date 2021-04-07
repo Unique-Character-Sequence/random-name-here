@@ -11,8 +11,11 @@ const Header = (props) => {
             */}
 
             <NavLink to={'/login'}>{props.login ? props.login : 'Sign In'}</NavLink>
-            <br/>
-            {props.login && <button onClick={props.setDeauthorizedThunk}>Logout</button>}
+            {
+                props.login && <div>
+                    <button onClick={props.setDeauthorizedThunk}>Logout</button>
+                </div>
+            }
         </div>
 
     </header>

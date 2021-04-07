@@ -2,6 +2,7 @@ import {ProfileDA} from "../../DAL/DataAccess";
 
 const SET_AUTH_DATA = 'SET_AUTH_DATA'
 const SET_AUTH_ERROR = 'SET_AUTH_ERROR'
+const SET_CAPTCHA_URL = 'SET_CAPTCHA_URL'
 const SET_AUTHORIZED_TRUE = 'SET_AUTHORIZED_TRUE'
 const SET_AUTHORIZED_FALSE = 'SET_AUTHORIZED_FALSE'
 
@@ -10,7 +11,8 @@ let InitialState = {
     id: null,
     email: null,
     isLoggedIn: false,
-    authError: 'qweqwe'
+    authError: null,
+    captchaUrl: null
 }
 
 const AuthReducer = (state = InitialState, action) => {
@@ -39,6 +41,11 @@ const AuthReducer = (state = InitialState, action) => {
                 ...state,
                 authError: action.authError.join()
             }
+        case SET_CAPTCHA_URL:
+            return {
+                ...state,
+                captchaUrl: action.captchaUrl
+            }
         default:
             return state
     }
@@ -56,6 +63,12 @@ export const setAuthError = (authError) => {
     return {
         type: SET_AUTH_ERROR,
         authError
+    }
+}
+export const setCaptchaUrl = (captchaUrl) => {
+    return {
+        type: SET_CAPTCHA_URL,
+        captchaUrl
     }
 }
 
@@ -82,9 +95,17 @@ export const getMyDataThunk = () => (dispatch) => {
                 }
             })
 }
+export const getCaptchaThunk = () => (dispatch) => {
+    ProfileDA.getCaptcha()
+        .then(
+            response => {
+                console.log(response.url)
+                dispatch(setCaptchaUrl(response.url))
+            })
+}
 
 export const sendAuthRequestThunk = (email, password, remember_me) => (dispatch) => {
-    ProfileDA.sendAuthRequest(email, password, remember_me)
+    return ProfileDA.sendAuthRequest(email, password, remember_me) // Без return не получится юзать функцию внутри await
         .then(
             response => {
                 //console.log(response)
@@ -93,6 +114,7 @@ export const sendAuthRequestThunk = (email, password, remember_me) => (dispatch)
                 } else {
                     console.log(response.messages)
                     dispatch(setAuthError(response.messages))
+                    //if (response.messages === '') {}
                 }
             })
         .then(

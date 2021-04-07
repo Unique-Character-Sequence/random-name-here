@@ -41,6 +41,11 @@ export const ProfileDA = {
         return instance.get(`auth/me`)
             .then(response => response.data)
     },
+    getCaptcha() {
+        // Gets captcha url
+        return instance.get(`security/get-captcha-url`)
+            .then(response => response.data)
+    },
     logout() {
         // Send logout request
         return instance.delete(`auth/login`)

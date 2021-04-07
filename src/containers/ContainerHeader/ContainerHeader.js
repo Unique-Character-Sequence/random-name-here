@@ -9,16 +9,10 @@ class ContainerHeader extends react.Component {
         this.props.getMyDataThunk()
     }
 
-    rerender = () => {
-        // Не робит форсапдейт. Я чего-то недопонимаю.
-        this.props.setDeauthorizedThunk()
-        this.forceUpdate()
-    }
-
     render() {
         //this.props.getMyDataThunk()
         this.props.getMyDataThunk()
-        return <Header {...this.props} rerender={this.rerender}/>
+        return <Header {...this.props}/>
     }
 }
 
