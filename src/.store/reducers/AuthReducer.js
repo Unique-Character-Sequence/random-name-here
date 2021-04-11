@@ -86,7 +86,7 @@ export const setAuthorizedFalse = () => {
 }
 
 export const getMyDataThunk = () => (dispatch) => {
-    ProfileDA.getMyData()
+    return ProfileDA.getMyData()
         .then(
             response => {
                 if (response.resultCode === 0) {
@@ -95,6 +95,7 @@ export const getMyDataThunk = () => (dispatch) => {
                 }
             })
 }
+
 export const getCaptchaThunk = () => (dispatch) => {
     ProfileDA.getCaptcha()
         .then(

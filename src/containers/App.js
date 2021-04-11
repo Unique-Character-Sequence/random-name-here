@@ -12,32 +12,56 @@ import Settings from '../components/Settings/Settings'
 import {BrowserRouter, Route} from "react-router-dom"
 import ContainerLogIn from "./ContainerLogIn/ContainerLogIn"
 import ContainerProfile from "./ContainerProfile/ContainerProfile"
+import {Component} from "react";
+import {compose} from "redux";
+import {connect} from "react-redux";
+import {initializeAppThunk} from "../.store/reducers/AppReducer";
+import Preloader from "../assets/Preloader";
 
 
-const App = () => {
-    return (
-        <BrowserRouter>
-            <div className='app-wrapper'>
-                <ContainerHeader/>
-                <Sidebar/>
-                <div className='app-wrapper-content'>
-                    <Route path="/profile/:userID?"
-                           render={() => <ContainerProfile/>}/>
-                    <Route path="/login"
-                           render={() => <ContainerLogIn/>}/>
-                    <Route path="/chats"
-                           render={() => <Chats/>}/>
-                    <Route path="/feed"
-                           render={() => <Feed/>}/>
-                    <Route path="/contacts"
-                           render={() => <Contacts/>}/>
-                    <Route path="/music"
-                           render={() => <Music/>}/>
-                    <Route path="/settings"
-                           render={() => <Settings/>}/>
+class App extends Component {
+    componentDidMount() {
+        this.props.initializeAppThunk()
+    }
+
+    render() {
+        if (!this.props.initialized) {return <Preloader/>}
+        console.log(this.props.initialized);
+        return (
+            <BrowserRouter>
+                <div className='app-wrapper'>
+                    <ContainerHeader/>
+                    <Sidebar/>
+                    <div className='app-wrapper-content'>
+                        <Route path="/profile/:userID?"
+                               render={() => <ContainerProfile/>}/>
+                        <Route path="/login"
+                               render={() => <ContainerLogIn/>}/>
+                        <Route path="/chats"
+                               render={() => <Chats/>}/>
+                        <Route path="/feed"
+                               render={() => <Feed/>}/>
+                        <Route path="/contacts"
+                               render={() => <Contacts/>}/>
+                        <Route path="/music"
+                               render={() => <Music/>}/>
+                        <Route path="/settings"
+                               render={() => <Settings/>}/>
+                    </div>
                 </div>
-            </div>
-        </BrowserRouter>
-    )
+            </BrowserRouter>
+        )
+    }
 }
-export default App
+
+let mapStateToProps = (state) => ({
+    initialized: state.AppReducer.initialized
+})
+
+let mapDispatchToProps = {
+    initializeAppThunk
+}
+
+
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps))(App)

@@ -11,13 +11,18 @@ import {compose} from "redux";
 import Profile from "../../components/Profile/Profile";
 
 class ContainerProfile extends react.Component {
-    componentDidMount() {
+    componentDidMount = () => {
         let userID = this.props.match.params.userID
         if (!userID) {
             userID = this.props.id
+            if (!userID) {
+                this.props.history.push('/login')
+            }
         }
-        this.props.getProfileDataThunk(userID)
-        this.props.getProfileStatusThunk(userID)
+        if (userID) {
+            this.props.getProfileDataThunk(userID)
+            this.props.getProfileStatusThunk(userID)
+        }
     }
 
     onSubmit = async props => {
@@ -51,6 +56,5 @@ let mapDispatchToProps = {
 
 export default compose(
     connect(mapStateToProps, mapDispatchToProps),
-    withRouter,
-    withSignInRedirect
+    withRouter
 )(ContainerProfile)

@@ -4,12 +4,14 @@ import ChatsReducer from "./reducers/ChatsReducer";
 import ProfileReducer from "./reducers/ProfileReducer";
 import AuthReducer from "./reducers/AuthReducer";
 import thunkMiddleware from "redux-thunk";
+import AppReducer from "./reducers/AppReducer";
 
 let reducers = combineReducers({
     ProfileComponentStates: ProfileReducer, // Прописываем состояние стейта, которое равно значению возвращенному ProfileReducer
     ChatComponentStates: ChatsReducer,
     ContactsComponentStates: ContactsReducer,
     AuthReducer,
+    AppReducer
 })
 
 const store = createStore(reducers, applyMiddleware(thunkMiddleware)) // alt+enter для импорта
