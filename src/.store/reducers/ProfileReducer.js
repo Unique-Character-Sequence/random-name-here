@@ -36,7 +36,7 @@ const ProfileReducer = (state = InitialState, action) => {
             }
         case SET_PROFILE_DATA:
             return {
-                ...state, fullName: action.fullName, status: action.status, user_img: action.user_img
+                ...state, fullName: action.fullName, status: action.status, user_img: action.user_img, userId: action.userId
             }
         case SET_PROFILE_STATUS:
             return {
@@ -61,12 +61,13 @@ export const isFetchingSwitch = (isFetching) => {
     }
 }
 
-export const setProfileData = (fullName, user_img, status) => {
+export const setProfileData = (fullName, user_img, status, userId) => {
     return {
         type: SET_PROFILE_DATA,
         fullName,
         user_img,
-        status
+        status,
+        userId
     }
 }
 
@@ -86,7 +87,8 @@ export const getProfileDataThunk = (id) => (dispatch) => {
                 dispatch(setProfileData(
                     response.fullName,
                     response.photos.large,
-                    response.status
+                    response.status,
+                    response.userId
                 ))
             })
 }

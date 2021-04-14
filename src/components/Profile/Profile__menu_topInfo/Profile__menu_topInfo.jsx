@@ -10,7 +10,10 @@ const Profile__menu_topInfo = (props) => {
         <Profile__menu_topInfo_name fullName={props.fullName}/>
         <Profile__menu_topInfo_userpic
             user_img={props.user_img}/>
-        <Profile__menu_topInfo_status status={props.status} updateProfileStatusThunk={props.updateProfileStatusThunk}/>
+        <Profile__menu_topInfo_status status={props.status}
+                                      id={props.id}
+                                      userId={props.userId}
+                                      updateProfileStatusThunk={props.updateProfileStatusThunk}/>
     </div>
 }
 

@@ -31,13 +31,17 @@ class Profile__menu_topInfo_status extends react.Component {
                 status: this.props.status
             })
         }
-        console.log(prevProps);
+        // console.log("prevprops:", prevProps);
     }
 
     render() {
+        console.log('id:', this.props.id, ' this.state.status: ', this.state.status);
         return <div className={classes.text}>
-            {!this.state.status_editMode && <div>
-                <span onClick={this.editModeEnable}>[+]{this.props.status}</span>
+            {!this.state.status_editMode && this.props.id === this.props.userId && <div>
+                <span onClick={this.editModeEnable}>[+]{this.state.status}</span>
+            </div>}
+            {this.props.id !== this.props.userId && <div>
+                <span>[non-editable]{this.state.status}</span>
             </div>}
             {this.state.status_editMode && <div>
                 <input onChange={this.onMyStatusChange} autoFocus={true} value={this.state.status}

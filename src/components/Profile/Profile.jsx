@@ -7,6 +7,8 @@ import Profile__postList from "./Profile__postList/Profile__postList";
 const Profile = (props) => {
     return <div className={classes.general}>
         <Profile__menu_topInfo fullName={props.fullName}
+                               id={props.id}
+                               userId={props.userId}
                                user_img={props.user_img}
                                status={props.status}
                                updateProfileStatusThunk={props.updateProfileStatusThunk}/>

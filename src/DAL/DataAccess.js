@@ -34,7 +34,9 @@ export const ProfileDA = {
     },
     getProfileData(id) {
         return instance.get(`profile/${id}`)
-            .then(response => response.data)
+            .then(response => {
+                console.log('getProfileData: ',response.data);
+                return response.data})
     },
     getMyData() {
         // Am I authorized. Returns email, id, login if authorized.

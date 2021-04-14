@@ -3,6 +3,7 @@ import LogIn from "../../components/LogIn/LogIn";
 import * as react from "react";
 import {getCaptchaThunk, sendAuthRequestThunk} from "../../.store/reducers/AuthReducer";
 import {FORM_ERROR} from "final-form";
+import {getAuthError, getCaptchaUrl, getIsLoggedIn} from "../../.store/selectors/usersSelectors";
 
 
 class ContainerLogIn extends react.Component {
@@ -27,9 +28,9 @@ class ContainerLogIn extends react.Component {
 }
 
 let mapStateToProps = (state) => ({
-    isLoggedIn: state.AuthReducer.isLoggedIn,
-    authError: state.AuthReducer.authError,
-    captchaUrl: state.AuthReducer.captchaUrl
+    isLoggedIn: getIsLoggedIn(state),
+    authError: getAuthError(state),
+    captchaUrl: getCaptchaUrl(state)
 })
 
 let mapDispatchToProps = {

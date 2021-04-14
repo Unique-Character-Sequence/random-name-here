@@ -1,14 +1,15 @@
 import {
     addPost,
     getProfileDataThunk, getProfileStatusThunk, updateProfileStatusThunk
-} from "../../.store/reducers/ProfileReducer";
-import {connect} from "react-redux";
-import * as react from "react";
-import Preloader from "../../assets/Preloader";
-import {withRouter} from "react-router-dom";
-import {withSignInRedirect} from "../../hocs/withSignInRedirect";
-import {compose} from "redux";
-import Profile from "../../components/Profile/Profile";
+} from "../../.store/reducers/ProfileReducer"
+import {connect} from "react-redux"
+import * as react from "react"
+import Preloader from "../../assets/Preloader"
+import {withRouter} from "react-router-dom"
+import {compose} from "redux"
+import Profile from "../../components/Profile/Profile"
+import {getId, getLogin, getProfileComponentStates, getUserId} from "../../.store/selectors/usersSelectors";
+
 
 class ContainerProfile extends react.Component {
     componentDidMount = () => {
@@ -42,9 +43,10 @@ class ContainerProfile extends react.Component {
 
 
 let mapStateToProps = (state) => ({
-    ...state.ProfileComponentStates,
-    login: state.AuthReducer.login,
-    id: state.AuthReducer.id,
+    ...getProfileComponentStates(state),
+    login: getLogin(state),
+    id: getId(state),
+    userId: getUserId(state)
 })
 
 let mapDispatchToProps = {
