@@ -1,56 +1,102 @@
 import classes from './Profile__menu_topInfo_status.module.css'
 import * as react from "react";
+import {useEffect, useRef, useState} from "react";
 
-class Profile__menu_topInfo_status extends react.Component {
-    state = {
-        status_editMode: false,
-        status: this.props.status
-    }
+const  Profile__menu_topInfo_status = (props) => {
+    // const mounted = useRef(false);
+    // useEffect(() => {
+    //     if (!mounted.current) {
+    //         // do componentDidMount logic
+    //         mounted.current = true;
+    //     } else {
+    //
+    //         // do componentDidUpdate logic
+    //     }
+    // });
 
-    editModeEnable = () => {
-        this.setState({
-            status_editMode: true
-        })
-    }
-    editModeDisable = () => {
-        this.setState({
-            status_editMode: false
-        })
-        this.props.updateProfileStatusThunk(this.state.status)
-    }
-    onMyStatusChange = (e) => {
-        this.setState({
-            status: e.currentTarget.value
-        })
+    let [status_editMode, setStatus_editMode] = useState(false)
+    let [status, setStatus] = useState("")
 
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-        if (prevProps.status !== this.props.status) {
-            this.setState({
-                status: this.props.status
-            })
+    const switchEditMode = (bool) => {
+        setStatus_editMode(bool)
+        if (bool === false) {
+            props.updateProfileStatusThunk(status)
         }
-        // console.log("prevprops:", prevProps);
+    }
+    const setEditModeTrue = () => {
+        setStatus_editMode(true)
     }
 
-    render() {
-        console.log('id:', this.props.id, ' this.state.status: ', this.state.status);
-        return <div className={classes.text}>
-            {!this.state.status_editMode && this.props.id === this.props.userId && <div>
-                <span onClick={this.editModeEnable}>[+]{this.state.status}</span>
-            </div>}
-            {this.props.id !== this.props.userId && <div>
-                <span>[non-editable]{this.state.status}</span>
-            </div>}
-            {this.state.status_editMode && <div>
-                <input onChange={this.onMyStatusChange} autoFocus={true} value={this.state.status}
-                       onBlur={this.editModeDisable}/>
-            </div>}
-
-            {/*{this.props.status}*/}
-        </div>
+    const onMyStatusChange = (e) => {
+        setStatus(e.currentTarget.value)
     }
+
+    return <div className={classes.text}>
+        {!status_editMode && props.id === props.userId && <div>
+            <span onClick={setEditModeTrue}>[+]{status}</span>
+        </div>}
+        {props.id !== props.userId && <div>
+            <span>[non-editable]{status}</span>
+        </div>}
+        {status_editMode && <div>
+            <input onChange={onMyStatusChange} autoFocus={true} value={status}
+                   onBlur={switchEditMode(false)}/>
+        </div>}
+
+        {/*{props.status}*/}
+    </div>
 }
+//
+// class OLD_Profile__menu_topInfo_status extends react.Component {
+//     state = {
+//         status_editMode: false,
+//         status: props.status
+//     }
+//
+//     editModeEnable = () => {
+//         setState({
+//             status_editMode: true
+//         })
+//     }
+//     editModeDisable = () => {
+//         setState({
+//             status_editMode: false
+//         })
+//         props.updateProfileStatusThunk(state.status)
+//     }
+//     onMyStatusChange = (e) => {
+//         setState({
+//             status: e.currentTarget.value
+//         })
+//
+//     }
+//
+//     componentDidUpdate(prevProps, prevState) {
+//         if (prevProps.status !== props.status) {
+//             setState({
+//                 status: props.status
+//             })
+//         }
+//         // console.log("prevprops:", prevProps);
+//     }
+//
+//     render() {
+//         console.log('id:', props.id, ' state.status: ', state.status);
+//         return <div className={classes.text}>
+//             {!state.status_editMode && props.id === props.userId && <div>
+//                 <span onClick={editModeEnable}>[+]{state.status}</span>
+//             </div>}
+//             {props.id !== props.userId && <div>
+//                 <span>[non-editable]{state.status}</span>
+//             </div>}
+//             {state.status_editMode && <div>
+//                 <input onChange={onMyStatusChange} autoFocus={true} value={state.status}
+//                        onBlur={editModeDisable}/>
+//             </div>}
+//
+//             {/*{props.status}*/}
+//         </div>
+//     }
+// }
 
 export default Profile__menu_topInfo_status;
