@@ -31,10 +31,17 @@ const Profile__menu_topInfo_status = (props) => {
         {!status_editMode && props.id === props.userId && <div>
             <span onClick={() => {
                 switchEditMode(true)
-            }}>[+]{status}</span>
+            }}>[editable. showing local status]{status}</span>
+        </div>}
+        {!status_editMode && props.id === props.userId && <div>
+            <span onClick={() => {
+                switchEditMode(true)
+            }}>[editable. showing status sent by server]{props.server_sent_status}</span>
         </div>}
         {props.id !== props.userId && <div>
-            <span>[non-editable]{status}</span>
+            <span>[non-editable. showing local status]{status}</span>
+            <br/>
+            <span>[non-editable. showing status sent by server]{props.server_sent_status}</span>
         </div>}
         {status_editMode && <div>
             <input onChange={onMyStatusChange} autoFocus={true} value={status}

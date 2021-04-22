@@ -11,6 +11,7 @@ const Profile = (props) => {
                                userId={props.userId}
                                user_img={props.user_img}
                                status={props.status}
+                               server_sent_status={props.server_sent_status}
                                updateProfileStatusThunk={props.updateProfileStatusThunk}/>
         {/*<Profile__gallery/>*/}
         <Profile__postList PostsArray={props.PostsArray}

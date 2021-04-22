@@ -15,7 +15,8 @@ let InitialState = {
     ],
     // Происходит ли загрузка
     isFetching: false,
-    status: ''
+    status: null,
+    server_sent_status: null // only for debugging
 }
 
 const ProfileReducer = (state = InitialState, action) => {
@@ -40,7 +41,8 @@ const ProfileReducer = (state = InitialState, action) => {
             }
         case SET_PROFILE_STATUS:
             return {
-                ...state, status: action.status
+                ...state, status: action.status,
+                server_sent_status: action.status // only for debugging
             }
         default:
             return state
