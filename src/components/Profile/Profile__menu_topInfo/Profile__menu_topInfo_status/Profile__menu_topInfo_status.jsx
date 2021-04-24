@@ -1,20 +1,14 @@
 import classes from './Profile__menu_topInfo_status.module.css'
-import {useEffect, useRef, useState} from "react";
+import {useEffect, useState} from "react";
 
 const Profile__menu_topInfo_status = (props) => {
-    // const mounted = useRef(false);
-    // useEffect(() => {
-    //     if (!mounted.current) {
-    //         // do componentDidMount logic
-    //         mounted.current = true;
-    //     } else {
-    //
-    //         // do componentDidUpdate logic
-    //     }
-    // });
-
     let [status_editMode, setStatus_editMode] = useState(false)
     let [status, setStatus] = useState("")
+
+    useEffect(() => {
+        // Переписывает значение status из local state на значение status из state
+        setStatus(props.status)
+    }, [props.status]) // Если изменится значение в скобках, то сработает effect
 
     const switchEditMode = (bool) => {
         setStatus_editMode(bool)
@@ -27,21 +21,20 @@ const Profile__menu_topInfo_status = (props) => {
         setStatus(e.currentTarget.value)
     }
 
+    console.log('local status:', status, '\nserver status:', props.status);
+
     return <div className={classes.text}>
         {!status_editMode && props.id === props.userId && <div>
             <span onClick={() => {
                 switchEditMode(true)
-            }}>[editable. showing local status]{status}</span>
-        </div>}
-        {!status_editMode && props.id === props.userId && <div>
-            <span onClick={() => {
-                switchEditMode(true)
-            }}>[editable. showing status sent by server]{props.server_sent_status}</span>
+            }}>
+                {`[editable] ${status}`}
+            </span>
         </div>}
         {props.id !== props.userId && <div>
-            <span>[non-editable. showing local status]{status}</span>
-            <br/>
-            <span>[non-editable. showing status sent by server]{props.server_sent_status}</span>
+            <span>
+                {`[non-editable] ${status}`}
+            </span>
         </div>}
         {status_editMode && <div>
             <input onChange={onMyStatusChange} autoFocus={true} value={status}

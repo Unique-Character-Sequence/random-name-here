@@ -15,8 +15,7 @@ let InitialState = {
     ],
     // Происходит ли загрузка
     isFetching: false,
-    status: null,
-    server_sent_status: null // only for debugging
+    status: null
 }
 
 const ProfileReducer = (state = InitialState, action) => {
@@ -37,12 +36,14 @@ const ProfileReducer = (state = InitialState, action) => {
             }
         case SET_PROFILE_DATA:
             return {
-                ...state, fullName: action.fullName, status: action.status, user_img: action.user_img, userId: action.userId
+                ...state,
+                fullName: action.fullName,
+                user_img: action.user_img,
+                userId: action.userId
             }
         case SET_PROFILE_STATUS:
             return {
-                ...state, status: action.status,
-                server_sent_status: action.status // only for debugging
+                ...state, status: action.status
             }
         default:
             return state
@@ -63,12 +64,11 @@ export const isFetchingSwitch = (isFetching) => {
     }
 }
 
-export const setProfileData = (fullName, user_img, status, userId) => {
+export const setProfileData = (fullName, user_img, userId) => {
     return {
         type: SET_PROFILE_DATA,
         fullName,
         user_img,
-        status,
         userId
     }
 }
@@ -89,9 +89,10 @@ export const getProfileDataThunk = (id) => (dispatch) => {
                 dispatch(setProfileData(
                     response.fullName,
                     response.photos.large,
-                    response.status,
+                    // response.status, // В json ответе нет такого параметра
                     response.userId
                 ))
+
             })
 }
 

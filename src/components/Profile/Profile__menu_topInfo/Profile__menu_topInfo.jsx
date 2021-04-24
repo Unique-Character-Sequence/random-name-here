@@ -11,7 +11,6 @@ const Profile__menu_topInfo = (props) => {
         <Profile__menu_topInfo_userpic
             user_img={props.user_img}/>
         <Profile__menu_topInfo_status status={props.status}
-                                      server_sent_status={props.server_sent_status} // only for debugging
                                       id={props.id}
                                       userId={props.userId}
                                       updateProfileStatusThunk={props.updateProfileStatusThunk}/>
