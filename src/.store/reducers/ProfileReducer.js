@@ -15,7 +15,7 @@ let InitialState = {
     ],
     // Происходит ли загрузка
     isFetching: false,
-    status: null
+    status: undefined
 }
 
 const ProfileReducer = (state = InitialState, action) => {

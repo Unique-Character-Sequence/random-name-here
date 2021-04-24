@@ -24,14 +24,14 @@ const Profile__menu_topInfo_status = (props) => {
     console.log('local status:', status, '\nserver status:', props.status);
 
     return <div className={classes.text}>
-        {!status_editMode && props.id === props.userId && <div>
+        {!status_editMode && props.myId === props.userId && <div>
             <span onClick={() => {
                 switchEditMode(true)
             }}>
                 {`[editable] ${status}`}
             </span>
         </div>}
-        {props.id !== props.userId && <div>
+        {props.myId !== props.userId && props.userId && <div>
             <span>
                 {`[non-editable] ${status}`}
             </span>
