@@ -1,4 +1,4 @@
-import ProfileReducer, {addPost} from "./ProfileReducer";
+import ProfileReducer, {deletePost} from "./ProfileReducer";
 
 let test_state = {
     PostsArray: [
@@ -10,8 +10,9 @@ let test_state = {
     ]
 }
 
-it('Something', () => {
-        let test_action = addPost('3')
+it('deletePost length decrease test', () => {
+        let test_action = deletePost(3)
         let newReturnedState = ProfileReducer(test_state, test_action)
+        expect(newReturnedState.PostsArray.length).toBe(4)
     }
 )

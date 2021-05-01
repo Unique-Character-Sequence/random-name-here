@@ -1,6 +1,7 @@
 import {ProfileDA} from "../../DAL/DataAccess";
 
 const ADD_POST = 'ADD_POST'
+const DELETE_POST = 'DELETE_POST'
 const IS_FETCHING_SWITCH = 'IS_FETCHING_SWITCH'
 const SET_PROFILE_DATA = 'SET_PROFILE_DATA'
 const SET_PROFILE_STATUS = 'SET_PROFILE_STATUS'
@@ -30,6 +31,11 @@ const ProfileReducer = (state = InitialState, action) => {
                     likesAmount: 0
                 }]
             }
+        case DELETE_POST:
+            return {
+                ...state,
+                PostsArray: state.PostsArray.filter(post => post.id !== action.id)
+            }
         case IS_FETCHING_SWITCH:
             return {
                 ...state, isFetching: action.isFetching
@@ -54,6 +60,12 @@ export const addPost = (postAreaData) => {
     return {
         type: ADD_POST,
         postAreaData
+    }
+}
+export const deletePost = (id) => {
+    return {
+        type: DELETE_POST,
+        id
     }
 }
 
