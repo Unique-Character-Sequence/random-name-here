@@ -1,5 +1,6 @@
 import ProfileReducer, {deletePost} from "./ProfileReducer";
 
+//------------------- 1. initial data
 let test_state = {
     PostsArray: [
         {id: 0, user_name: 'Georgo Biba', post_content: '123123', likesAmount: 1023},
@@ -11,8 +12,10 @@ let test_state = {
 }
 
 it('deletePost length decrease test', () => {
+//------------------- 2. action
         let test_action = deletePost(3)
         let newReturnedState = ProfileReducer(test_state, test_action)
+//------------------- 3. expectation
         expect(newReturnedState.PostsArray.length).toBe(4)
     }
 )

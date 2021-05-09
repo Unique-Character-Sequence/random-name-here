@@ -1,18 +1,13 @@
 import classes from './Contacts__contactList.module.css'
 import defaultUserImage from "../../../assets/img/defaultpic_user.png";
 import {NavLink} from "react-router-dom";
+import {paginator} from "../../../utils/paginator";
 
 let Contacts__contactList = (props) => {
-    // Количество необходимых для отображения цифр
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
-    // Список цифр, которые будут отображаться в баре переключения странице
-    let pagesNumbersShown = []
-    for (let i = 1; i <= pagesCount; i++) {
-        pagesNumbersShown.push(i)
-    }
-
+    console.log('pagination works weird.')
     return <div className={classes.general}>
-        {pagesNumbersShown.map(p => {
+        {paginator(props.pageSize, props.currentPage, pagesCount).map(p => {
             // 1. map проходит по списку элементов и сравнивает каждый элементы списка (где элемент p, а список pagesNumbersShown) с props.currentPage
             return <span
                 // см. 1
@@ -22,15 +17,11 @@ let Contacts__contactList = (props) => {
             >{p + '\n'}
                 </span>
         })}
-        <br/>
-        Search_form:
-        <br/>
-        Contacts:
-        <br/>
-        <br/>
-        <button onClick={props.getUsers}>Get Users</button>
-        <br/>
-        <br/>
+        <div>Search_form:</div>
+        <div>Contacts:</div>
+        <div>
+            <button onClick={props.getUsers}>Get Users</button>
+        </div>
 
         {props.UsersArray.map(p => <div>
             <div className={classes.item}>
@@ -38,7 +29,6 @@ let Contacts__contactList = (props) => {
                     <img src={p.photos.small ? p.photos.small : defaultUserImage} alt=""/>
                 </NavLink>
             </div>
-
             <div className={classes.item}>
                 <NavLink to={'/profile/' + p.id}
                          activeClassName={classes.active}>{p.name}</NavLink>

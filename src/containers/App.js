@@ -12,11 +12,12 @@ import Settings from '../components/Settings/Settings'
 import {BrowserRouter, Route} from "react-router-dom"
 import ContainerLogIn from "./ContainerLogIn/ContainerLogIn"
 import ContainerProfile from "./ContainerProfile/ContainerProfile"
-import {Component} from "react";
+import React, {Component} from "react";
 import {compose} from "redux";
-import {connect} from "react-redux";
+import {connect, Provider} from "react-redux";
 import {initializeAppThunk} from "../.store/reducers/AppReducer";
 import Preloader from "../assets/Preloader";
+import store from "../.store/store";
 
 
 class App extends Component {
@@ -25,7 +26,9 @@ class App extends Component {
     }
 
     render() {
-        if (!this.props.initialized) {return <Preloader/>}
+        if (!this.props.initialized) {
+            return <Preloader/>
+        }
         console.log(this.props.initialized);
         return (
             <BrowserRouter>
@@ -63,5 +66,14 @@ let mapDispatchToProps = {
 }
 
 
-export default compose(
+let WrappedApp = compose(
     connect(mapStateToProps, mapDispatchToProps))(App)
+
+
+const SocialNetworkApp = (props) => {
+    return (<Provider store={store}>
+        <WrappedApp/>
+    </Provider>)
+}
+
+export default SocialNetworkApp
