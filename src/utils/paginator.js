@@ -11,6 +11,6 @@ export const paginator = (pageSize, currentButton, pagesCount) => {
             buttons_arr.push(a)
         }
     }
-    return buttons_arr
+    return buttons_arr.filter(((value, index) => buttons_arr.indexOf(value) === index)) // .filter удаляет дубликаты
 }
 
