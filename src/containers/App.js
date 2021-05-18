@@ -4,7 +4,7 @@ import ContainerHeader from '../containers/ContainerHeader/ContainerHeader'
 
 
 import Feed from '../components/Feed/Feed'
-import Contacts from "../components/Contacts/Contacts"
+//import Contacts from "../components/Contacts/Contacts"
 import Chats from '../components/Chats/Chats'
 import Music from '../components/Music/Music'
 import Settings from '../components/Settings/Settings'
@@ -18,7 +18,10 @@ import {connect, Provider} from "react-redux";
 import {initializeAppThunk} from "../.store/reducers/AppReducer";
 import Preloader from "../assets/Preloader";
 import store from "../.store/store";
+import {withSuspense} from "../hocs/withSuspense";
 
+
+const ContactsContainer = withSuspense(React.lazy(() => import ("../components/Contacts/Contacts")))
 
 class App extends Component {
     componentDidMount() {
@@ -45,7 +48,7 @@ class App extends Component {
                         <Route path="/feed"
                                render={() => <Feed/>}/>
                         <Route path="/contacts"
-                               render={() => <Contacts/>}/>
+                               render={() => <ContactsContainer/>}/>
                         <Route path="/music"
                                render={() => <Music/>}/>
                         <Route path="/settings"
